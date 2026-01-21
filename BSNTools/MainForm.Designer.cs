@@ -44,6 +44,11 @@
             DecimalGroupBox = new GroupBox();
             DecimalNumericUpDown = new NumericUpDown();
             tabPage2 = new TabPage();
+            IPAddressInputGroupBox = new GroupBox();
+            IPAddressInputTextBox = new TextBox();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            groupBox3 = new GroupBox();
             HeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             MainTabControl.SuspendLayout();
@@ -54,6 +59,8 @@
             BinaryGroupBox.SuspendLayout();
             DecimalGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DecimalNumericUpDown).BeginInit();
+            tabPage2.SuspendLayout();
+            IPAddressInputGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // HeaderPanel
@@ -220,6 +227,10 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(groupBox3);
+            tabPage2.Controls.Add(groupBox2);
+            tabPage2.Controls.Add(groupBox1);
+            tabPage2.Controls.Add(IPAddressInputGroupBox);
             tabPage2.Location = new Point(4, 39);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -227,6 +238,52 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "IP/Netzwerke";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // IPAddressInputGroupBox
+            // 
+            IPAddressInputGroupBox.Controls.Add(IPAddressInputTextBox);
+            IPAddressInputGroupBox.Location = new Point(16, 18);
+            IPAddressInputGroupBox.Name = "IPAddressInputGroupBox";
+            IPAddressInputGroupBox.Padding = new Padding(22, 22, 22, 18);
+            IPAddressInputGroupBox.Size = new Size(1057, 117);
+            IPAddressInputGroupBox.TabIndex = 0;
+            IPAddressInputGroupBox.TabStop = false;
+            IPAddressInputGroupBox.Text = "IP-Addresse/CIDR";
+            // 
+            // IPAddressInputTextBox
+            // 
+            IPAddressInputTextBox.Dock = DockStyle.Fill;
+            IPAddressInputTextBox.Location = new Point(22, 50);
+            IPAddressInputTextBox.Name = "IPAddressInputTextBox";
+            IPAddressInputTextBox.Size = new Size(1013, 35);
+            IPAddressInputTextBox.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Location = new Point(16, 141);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(342, 125);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "groupBox1";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Location = new Point(373, 141);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(342, 125);
+            groupBox2.TabIndex = 2;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "groupBox2";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Location = new Point(731, 141);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(342, 125);
+            groupBox3.TabIndex = 3;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "groupBox3";
             // 
             // MainForm
             // 
@@ -251,6 +308,9 @@
             BinaryGroupBox.PerformLayout();
             DecimalGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DecimalNumericUpDown).EndInit();
+            tabPage2.ResumeLayout(false);
+            IPAddressInputGroupBox.ResumeLayout(false);
+            IPAddressInputGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -272,5 +332,10 @@
         private NumericUpDown HexNumericUpDown;
         private TextBox BinaryTextBox;
         private NumericUpDown DecimalNumericUpDown;
+        private GroupBox IPAddressInputGroupBox;
+        private TextBox IPAddressInputTextBox;
+        private GroupBox groupBox3;
+        private GroupBox groupBox2;
+        private GroupBox groupBox1;
     }
 }
