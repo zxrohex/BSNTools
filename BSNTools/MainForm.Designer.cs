@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
             HeaderPanel = new Panel();
-            BorderLabel = new Label();
+            label2 = new Label();
+            label1 = new Label();
             pictureBox1 = new PictureBox();
+            BorderLabel = new Label();
             MainTabControl = new TabControl();
             tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            label1 = new Label();
-            label2 = new Label();
-            DecimalGroupBox = new GroupBox();
-            BinaryGroupBox = new GroupBox();
-            HexGroupBox = new GroupBox();
             OctetGroupBox = new GroupBox();
-            DecimalNumericUpDown = new NumericUpDown();
-            HexNumericUpDown = new NumericUpDown();
-            BinaryTextBox = new TextBox();
             OctetTextBox = new TextBox();
+            HexGroupBox = new GroupBox();
+            HexNumericUpDown = new NumericUpDown();
+            BinaryGroupBox = new GroupBox();
+            BinaryTextBox = new TextBox();
+            DecimalGroupBox = new GroupBox();
+            DecimalNumericUpDown = new NumericUpDown();
+            tabPage2 = new TabPage();
             HeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             MainTabControl.SuspendLayout();
             tabPage1.SuspendLayout();
-            DecimalGroupBox.SuspendLayout();
-            BinaryGroupBox.SuspendLayout();
-            HexGroupBox.SuspendLayout();
             OctetGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DecimalNumericUpDown).BeginInit();
+            HexGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)HexNumericUpDown).BeginInit();
+            BinaryGroupBox.SuspendLayout();
+            DecimalGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DecimalNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // HeaderPanel
@@ -68,6 +68,35 @@
             HeaderPanel.Size = new Size(1137, 107);
             HeaderPanel.TabIndex = 0;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(109, 52);
+            label2.Name = "label2";
+            label2.Size = new Size(278, 30);
+            label2.TabIndex = 2;
+            label2.Text = "Tools für den BSN-Unterricht";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label1.Location = new Point(109, 22);
+            label1.Name = "label1";
+            label1.Size = new Size(112, 30);
+            label1.TabIndex = 1;
+            label1.Text = "BSN Tools";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.BSNToolsLogo;
+            pictureBox1.Location = new Point(21, 18);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(80, 76);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
             // BorderLabel
             // 
             BorderLabel.BorderStyle = BorderStyle.Fixed3D;
@@ -76,14 +105,6 @@
             BorderLabel.Name = "BorderLabel";
             BorderLabel.Size = new Size(1137, 2);
             BorderLabel.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(21, 15);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(80, 76);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // MainTabControl
             // 
@@ -110,56 +131,26 @@
             tabPage1.Text = "Umrechnung";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // OctetGroupBox
             // 
-            tabPage2.Location = new Point(4, 39);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1089, 522);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "IP/Netzwerke";
-            tabPage2.UseVisualStyleBackColor = true;
+            OctetGroupBox.Controls.Add(OctetTextBox);
+            OctetGroupBox.Location = new Point(16, 387);
+            OctetGroupBox.Name = "OctetGroupBox";
+            OctetGroupBox.Padding = new Padding(22, 22, 22, 18);
+            OctetGroupBox.Size = new Size(1057, 117);
+            OctetGroupBox.TabIndex = 3;
+            OctetGroupBox.TabStop = false;
+            OctetGroupBox.Text = "Oktett";
             // 
-            // label1
+            // OctetTextBox
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(109, 22);
-            label1.Name = "label1";
-            label1.Size = new Size(112, 30);
-            label1.TabIndex = 1;
-            label1.Text = "BSN Tools";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(109, 52);
-            label2.Name = "label2";
-            label2.Size = new Size(278, 30);
-            label2.TabIndex = 2;
-            label2.Text = "Tools für den BSN-Unterricht";
-            // 
-            // DecimalGroupBox
-            // 
-            DecimalGroupBox.Controls.Add(DecimalNumericUpDown);
-            DecimalGroupBox.Location = new Point(16, 18);
-            DecimalGroupBox.Name = "DecimalGroupBox";
-            DecimalGroupBox.Padding = new Padding(22, 22, 22, 18);
-            DecimalGroupBox.Size = new Size(1057, 117);
-            DecimalGroupBox.TabIndex = 0;
-            DecimalGroupBox.TabStop = false;
-            DecimalGroupBox.Text = "Dezimal";
-            // 
-            // BinaryGroupBox
-            // 
-            BinaryGroupBox.Controls.Add(BinaryTextBox);
-            BinaryGroupBox.Location = new Point(16, 141);
-            BinaryGroupBox.Name = "BinaryGroupBox";
-            BinaryGroupBox.Padding = new Padding(22, 22, 22, 18);
-            BinaryGroupBox.Size = new Size(1057, 117);
-            BinaryGroupBox.TabIndex = 1;
-            BinaryGroupBox.TabStop = false;
-            BinaryGroupBox.Text = "Binär";
+            OctetTextBox.Dock = DockStyle.Fill;
+            OctetTextBox.Location = new Point(22, 50);
+            OctetTextBox.Name = "OctetTextBox";
+            OctetTextBox.Size = new Size(1013, 35);
+            OctetTextBox.TabIndex = 1;
+            OctetTextBox.TextAlign = HorizontalAlignment.Center;
+            OctetTextBox.TextChanged += OctetTextBox_TextChanged;
             // 
             // HexGroupBox
             // 
@@ -172,35 +163,28 @@
             HexGroupBox.TabStop = false;
             HexGroupBox.Text = "Hexadezimal";
             // 
-            // OctetGroupBox
-            // 
-            OctetGroupBox.Controls.Add(OctetTextBox);
-            OctetGroupBox.Location = new Point(16, 387);
-            OctetGroupBox.Name = "OctetGroupBox";
-            OctetGroupBox.Padding = new Padding(22, 22, 22, 18);
-            OctetGroupBox.Size = new Size(1057, 117);
-            OctetGroupBox.TabIndex = 3;
-            OctetGroupBox.TabStop = false;
-            OctetGroupBox.Text = "Oktett";
-            // 
-            // DecimalNumericUpDown
-            // 
-            DecimalNumericUpDown.Dock = DockStyle.Fill;
-            DecimalNumericUpDown.Location = new Point(22, 50);
-            DecimalNumericUpDown.Name = "DecimalNumericUpDown";
-            DecimalNumericUpDown.Size = new Size(1013, 35);
-            DecimalNumericUpDown.TabIndex = 0;
-            DecimalNumericUpDown.ValueChanged += DecimalNumericUpDown_ValueChanged;
-            // 
             // HexNumericUpDown
             // 
             HexNumericUpDown.Dock = DockStyle.Fill;
             HexNumericUpDown.Hexadecimal = true;
             HexNumericUpDown.Location = new Point(22, 50);
+            HexNumericUpDown.Maximum = new decimal(new int[] { 1410065407, 2, 0, 0 });
             HexNumericUpDown.Name = "HexNumericUpDown";
             HexNumericUpDown.Size = new Size(1013, 35);
             HexNumericUpDown.TabIndex = 1;
+            HexNumericUpDown.TextAlign = HorizontalAlignment.Center;
             HexNumericUpDown.ValueChanged += HexNumericUpDown_ValueChanged;
+            // 
+            // BinaryGroupBox
+            // 
+            BinaryGroupBox.Controls.Add(BinaryTextBox);
+            BinaryGroupBox.Location = new Point(16, 141);
+            BinaryGroupBox.Name = "BinaryGroupBox";
+            BinaryGroupBox.Padding = new Padding(22, 22, 22, 18);
+            BinaryGroupBox.Size = new Size(1057, 117);
+            BinaryGroupBox.TabIndex = 1;
+            BinaryGroupBox.TabStop = false;
+            BinaryGroupBox.Text = "Binär";
             // 
             // BinaryTextBox
             // 
@@ -209,16 +193,40 @@
             BinaryTextBox.Name = "BinaryTextBox";
             BinaryTextBox.Size = new Size(1013, 35);
             BinaryTextBox.TabIndex = 0;
+            BinaryTextBox.TextAlign = HorizontalAlignment.Center;
             BinaryTextBox.TextChanged += BinaryTextBox_TextChanged;
             // 
-            // OctetTextBox
+            // DecimalGroupBox
             // 
-            OctetTextBox.Dock = DockStyle.Fill;
-            OctetTextBox.Location = new Point(22, 50);
-            OctetTextBox.Name = "OctetTextBox";
-            OctetTextBox.Size = new Size(1013, 35);
-            OctetTextBox.TabIndex = 1;
-            OctetTextBox.TextChanged += OctetTextBox_TextChanged;
+            DecimalGroupBox.Controls.Add(DecimalNumericUpDown);
+            DecimalGroupBox.Location = new Point(16, 18);
+            DecimalGroupBox.Name = "DecimalGroupBox";
+            DecimalGroupBox.Padding = new Padding(22, 22, 22, 18);
+            DecimalGroupBox.Size = new Size(1057, 117);
+            DecimalGroupBox.TabIndex = 0;
+            DecimalGroupBox.TabStop = false;
+            DecimalGroupBox.Text = "Dezimal";
+            // 
+            // DecimalNumericUpDown
+            // 
+            DecimalNumericUpDown.Dock = DockStyle.Fill;
+            DecimalNumericUpDown.Location = new Point(22, 50);
+            DecimalNumericUpDown.Maximum = new decimal(new int[] { 1410065407, 2, 0, 0 });
+            DecimalNumericUpDown.Name = "DecimalNumericUpDown";
+            DecimalNumericUpDown.Size = new Size(1013, 35);
+            DecimalNumericUpDown.TabIndex = 0;
+            DecimalNumericUpDown.TextAlign = HorizontalAlignment.Center;
+            DecimalNumericUpDown.ValueChanged += DecimalNumericUpDown_ValueChanged;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 39);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1089, 522);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "IP/Netzwerke";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -235,14 +243,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             MainTabControl.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            DecimalGroupBox.ResumeLayout(false);
-            BinaryGroupBox.ResumeLayout(false);
-            BinaryGroupBox.PerformLayout();
-            HexGroupBox.ResumeLayout(false);
             OctetGroupBox.ResumeLayout(false);
             OctetGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DecimalNumericUpDown).EndInit();
+            HexGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)HexNumericUpDown).EndInit();
+            BinaryGroupBox.ResumeLayout(false);
+            BinaryGroupBox.PerformLayout();
+            DecimalGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DecimalNumericUpDown).EndInit();
             ResumeLayout(false);
         }
 
