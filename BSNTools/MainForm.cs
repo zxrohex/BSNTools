@@ -1,3 +1,4 @@
+using BSNTools.Core.IP;
 using System.Net;
 
 namespace BSNTools
@@ -25,7 +26,7 @@ namespace BSNTools
         {
             if (ipNetwork != null)
             {
-                IPAddressTextBox.Text = ipNetwork.ToString();
+                IPAddressTextBox.Text = IPNet.GetIPWithoutCIDR(IPAddressInputTextBox.Text);
                 CIDRTextBox.Text = ipNetwork.Cidr.ToString();
                 NetworkAddressTextBox.Text = ipNetwork.Network.ToString();
                 SubnetmaskTextBox.Text = ipNetwork.Netmask.ToString();
@@ -67,9 +68,15 @@ namespace BSNTools
 
         private void IPAddressInputTextBox_TextChanged(object sender, EventArgs e)
         {
-            ipNetwork = IPNetwork2.Parse(IPAddressInputTextBox.Text);
-
-            UpdateNetworkInfo();
+            try 
+            {
+                ipNetwork = IPNetwork2.Parse(IPAddressInputTextBox.Text);
+                UpdateNetworkInfo();
+            }
+            catch
+            {
+                // Ignore invalid input
+            }
         }
 
         private void DecimalGroupBox_Enter(object sender, EventArgs e)

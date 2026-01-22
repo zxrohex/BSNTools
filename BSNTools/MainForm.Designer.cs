@@ -123,7 +123,7 @@
             VersionLabel.Name = "VersionLabel";
             VersionLabel.Size = new Size(132, 15);
             VersionLabel.TabIndex = 3;
-            VersionLabel.Text = "Version 0.0.0.1";
+            VersionLabel.Text = "Version 0.0.0.1-1";
             VersionLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label2
