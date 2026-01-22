@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             HeaderPanel = new Panel();
+            CreditsLabel = new Label();
+            VersionLabel = new Label();
             label2 = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             BorderLabel = new Label();
             MainTabControl = new TabControl();
             tabPage1 = new TabPage();
+            ConversionInfoLabel = new Label();
             OctetGroupBox = new GroupBox();
             OctetTextBox = new TextBox();
             HexGroupBox = new GroupBox();
@@ -44,26 +48,27 @@
             DecimalGroupBox = new GroupBox();
             DecimalNumericUpDown = new NumericUpDown();
             tabPage2 = new TabPage();
+            IPNetworkInfoLabel = new Label();
             TotalAddressesGroupBox = new GroupBox();
+            TotalAddressesTextBox = new TextBox();
             LastUsableAddressGroupBox = new GroupBox();
+            LastUsableAddressTextBox = new TextBox();
             FirstUsableAddressGroupBox = new GroupBox();
+            FirstUsableAddressTextBox = new TextBox();
             UsableAddressesGroupBox = new GroupBox();
+            UsableAddressesTextBox = new TextBox();
             BroadcastAddressGroupBox = new GroupBox();
+            BroadcastAddressTextBox = new TextBox();
             NetworkAddressGroupBox = new GroupBox();
+            NetworkAddressTextBox = new TextBox();
             SubnetmaskGroupBox = new GroupBox();
+            SubnetmaskTextBox = new TextBox();
             CIDRGroupBox = new GroupBox();
+            CIDRTextBox = new TextBox();
             IPAddressGroupBox = new GroupBox();
             IPAddressTextBox = new TextBox();
             IPAddressInputGroupBox = new GroupBox();
             IPAddressInputTextBox = new TextBox();
-            CIDRTextBox = new TextBox();
-            SubnetmaskTextBox = new TextBox();
-            BroadcastAddressTextBox = new TextBox();
-            UsableAddressesTextBox = new TextBox();
-            LastUsableAddressTextBox = new TextBox();
-            TotalAddressesTextBox = new TextBox();
-            NetworkAddressTextBox = new TextBox();
-            FirstUsableAddressTextBox = new TextBox();
             HeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             MainTabControl.SuspendLayout();
@@ -90,6 +95,8 @@
             // HeaderPanel
             // 
             HeaderPanel.BackColor = Color.White;
+            HeaderPanel.Controls.Add(CreditsLabel);
+            HeaderPanel.Controls.Add(VersionLabel);
             HeaderPanel.Controls.Add(label2);
             HeaderPanel.Controls.Add(label1);
             HeaderPanel.Controls.Add(pictureBox1);
@@ -99,6 +106,25 @@
             HeaderPanel.Name = "HeaderPanel";
             HeaderPanel.Size = new Size(573, 54);
             HeaderPanel.TabIndex = 0;
+            // 
+            // CreditsLabel
+            // 
+            CreditsLabel.AutoSize = true;
+            CreditsLabel.Location = new Point(479, 26);
+            CreditsLabel.Name = "CreditsLabel";
+            CreditsLabel.Size = new Size(83, 15);
+            CreditsLabel.TabIndex = 4;
+            CreditsLabel.Text = "by Sasha/Lynn";
+            // 
+            // VersionLabel
+            // 
+            VersionLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            VersionLabel.Location = new Point(430, 11);
+            VersionLabel.Name = "VersionLabel";
+            VersionLabel.Size = new Size(132, 15);
+            VersionLabel.TabIndex = 3;
+            VersionLabel.Text = "Version 0.0.0.1";
+            VersionLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label2
             // 
@@ -156,6 +182,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(ConversionInfoLabel);
             tabPage1.Controls.Add(OctetGroupBox);
             tabPage1.Controls.Add(HexGroupBox);
             tabPage1.Controls.Add(BinaryGroupBox);
@@ -169,6 +196,14 @@
             tabPage1.Text = "Umrechnung";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // ConversionInfoLabel
+            // 
+            ConversionInfoLabel.BorderStyle = BorderStyle.Fixed3D;
+            ConversionInfoLabel.Location = new Point(8, 255);
+            ConversionInfoLabel.Name = "ConversionInfoLabel";
+            ConversionInfoLabel.Size = new Size(527, 55);
+            ConversionInfoLabel.TabIndex = 4;
+            // 
             // OctetGroupBox
             // 
             OctetGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -181,6 +216,8 @@
             OctetGroupBox.TabIndex = 3;
             OctetGroupBox.TabStop = false;
             OctetGroupBox.Text = "Oktett";
+            OctetGroupBox.Enter += OctetGroupBox_Enter;
+            OctetGroupBox.Leave += DecimalGroupBox_Leave;
             // 
             // OctetTextBox
             // 
@@ -205,6 +242,8 @@
             HexGroupBox.TabIndex = 2;
             HexGroupBox.TabStop = false;
             HexGroupBox.Text = "Hexadezimal";
+            HexGroupBox.Enter += HexGroupBox_Enter;
+            HexGroupBox.Leave += DecimalGroupBox_Leave;
             // 
             // HexNumericUpDown
             // 
@@ -231,6 +270,8 @@
             BinaryGroupBox.TabIndex = 1;
             BinaryGroupBox.TabStop = false;
             BinaryGroupBox.Text = "Binär";
+            BinaryGroupBox.Enter += BinaryGroupBox_Enter;
+            BinaryGroupBox.Leave += DecimalGroupBox_Leave;
             // 
             // BinaryTextBox
             // 
@@ -255,6 +296,8 @@
             DecimalGroupBox.TabIndex = 0;
             DecimalGroupBox.TabStop = false;
             DecimalGroupBox.Text = "Dezimal";
+            DecimalGroupBox.Enter += DecimalGroupBox_Enter;
+            DecimalGroupBox.Leave += DecimalGroupBox_Leave;
             // 
             // DecimalNumericUpDown
             // 
@@ -270,6 +313,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(IPNetworkInfoLabel);
             tabPage2.Controls.Add(TotalAddressesGroupBox);
             tabPage2.Controls.Add(LastUsableAddressGroupBox);
             tabPage2.Controls.Add(FirstUsableAddressGroupBox);
@@ -289,6 +333,15 @@
             tabPage2.Text = "IP/Netzwerke";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // IPNetworkInfoLabel
+            // 
+            IPNetworkInfoLabel.AutoEllipsis = true;
+            IPNetworkInfoLabel.BorderStyle = BorderStyle.Fixed3D;
+            IPNetworkInfoLabel.Location = new Point(9, 267);
+            IPNetworkInfoLabel.Name = "IPNetworkInfoLabel";
+            IPNetworkInfoLabel.Size = new Size(526, 42);
+            IPNetworkInfoLabel.TabIndex = 10;
+            // 
             // TotalAddressesGroupBox
             // 
             TotalAddressesGroupBox.Controls.Add(TotalAddressesTextBox);
@@ -300,6 +353,17 @@
             TotalAddressesGroupBox.TabIndex = 9;
             TotalAddressesGroupBox.TabStop = false;
             TotalAddressesGroupBox.Text = "Totale Addressen";
+            TotalAddressesGroupBox.Enter += TotalAddressesGroupBox_Enter;
+            // 
+            // TotalAddressesTextBox
+            // 
+            TotalAddressesTextBox.Dock = DockStyle.Fill;
+            TotalAddressesTextBox.Location = new Point(8, 23);
+            TotalAddressesTextBox.Name = "TotalAddressesTextBox";
+            TotalAddressesTextBox.ReadOnly = true;
+            TotalAddressesTextBox.Size = new Size(156, 23);
+            TotalAddressesTextBox.TabIndex = 1;
+            TotalAddressesTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // LastUsableAddressGroupBox
             // 
@@ -312,6 +376,17 @@
             LastUsableAddressGroupBox.TabIndex = 8;
             LastUsableAddressGroupBox.TabStop = false;
             LastUsableAddressGroupBox.Text = "Letzte nutzbare Addresse";
+            LastUsableAddressGroupBox.Enter += LastUsableAddressGroupBox_Enter;
+            // 
+            // LastUsableAddressTextBox
+            // 
+            LastUsableAddressTextBox.Dock = DockStyle.Fill;
+            LastUsableAddressTextBox.Location = new Point(8, 23);
+            LastUsableAddressTextBox.Name = "LastUsableAddressTextBox";
+            LastUsableAddressTextBox.ReadOnly = true;
+            LastUsableAddressTextBox.Size = new Size(156, 23);
+            LastUsableAddressTextBox.TabIndex = 1;
+            LastUsableAddressTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // FirstUsableAddressGroupBox
             // 
@@ -324,6 +399,17 @@
             FirstUsableAddressGroupBox.TabIndex = 7;
             FirstUsableAddressGroupBox.TabStop = false;
             FirstUsableAddressGroupBox.Text = "Erste nutzbare Addresse";
+            FirstUsableAddressGroupBox.Enter += FirstUsableAddressGroupBox_Enter;
+            // 
+            // FirstUsableAddressTextBox
+            // 
+            FirstUsableAddressTextBox.Dock = DockStyle.Fill;
+            FirstUsableAddressTextBox.Location = new Point(8, 23);
+            FirstUsableAddressTextBox.Name = "FirstUsableAddressTextBox";
+            FirstUsableAddressTextBox.ReadOnly = true;
+            FirstUsableAddressTextBox.Size = new Size(156, 23);
+            FirstUsableAddressTextBox.TabIndex = 1;
+            FirstUsableAddressTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // UsableAddressesGroupBox
             // 
@@ -336,6 +422,17 @@
             UsableAddressesGroupBox.TabIndex = 6;
             UsableAddressesGroupBox.TabStop = false;
             UsableAddressesGroupBox.Text = "Nutzbare Addressen";
+            UsableAddressesGroupBox.Enter += UsableAddressesGroupBox_Enter;
+            // 
+            // UsableAddressesTextBox
+            // 
+            UsableAddressesTextBox.Dock = DockStyle.Fill;
+            UsableAddressesTextBox.Location = new Point(8, 23);
+            UsableAddressesTextBox.Name = "UsableAddressesTextBox";
+            UsableAddressesTextBox.ReadOnly = true;
+            UsableAddressesTextBox.Size = new Size(156, 23);
+            UsableAddressesTextBox.TabIndex = 1;
+            UsableAddressesTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // BroadcastAddressGroupBox
             // 
@@ -348,6 +445,17 @@
             BroadcastAddressGroupBox.TabIndex = 5;
             BroadcastAddressGroupBox.TabStop = false;
             BroadcastAddressGroupBox.Text = "Broadcastaddresse";
+            BroadcastAddressGroupBox.Enter += BroadcastAddressGroupBox_Enter;
+            // 
+            // BroadcastAddressTextBox
+            // 
+            BroadcastAddressTextBox.Dock = DockStyle.Fill;
+            BroadcastAddressTextBox.Location = new Point(8, 23);
+            BroadcastAddressTextBox.Name = "BroadcastAddressTextBox";
+            BroadcastAddressTextBox.ReadOnly = true;
+            BroadcastAddressTextBox.Size = new Size(156, 23);
+            BroadcastAddressTextBox.TabIndex = 1;
+            BroadcastAddressTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // NetworkAddressGroupBox
             // 
@@ -360,6 +468,17 @@
             NetworkAddressGroupBox.TabIndex = 4;
             NetworkAddressGroupBox.TabStop = false;
             NetworkAddressGroupBox.Text = "Netzwerkaddresse";
+            NetworkAddressGroupBox.Enter += NetworkAddressGroupBox_Enter;
+            // 
+            // NetworkAddressTextBox
+            // 
+            NetworkAddressTextBox.Dock = DockStyle.Fill;
+            NetworkAddressTextBox.Location = new Point(8, 23);
+            NetworkAddressTextBox.Name = "NetworkAddressTextBox";
+            NetworkAddressTextBox.ReadOnly = true;
+            NetworkAddressTextBox.Size = new Size(156, 23);
+            NetworkAddressTextBox.TabIndex = 1;
+            NetworkAddressTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // SubnetmaskGroupBox
             // 
@@ -372,6 +491,17 @@
             SubnetmaskGroupBox.TabIndex = 3;
             SubnetmaskGroupBox.TabStop = false;
             SubnetmaskGroupBox.Text = "Subnetzmaske";
+            SubnetmaskGroupBox.Enter += SubnetmaskGroupBox_Enter;
+            // 
+            // SubnetmaskTextBox
+            // 
+            SubnetmaskTextBox.Dock = DockStyle.Fill;
+            SubnetmaskTextBox.Location = new Point(8, 23);
+            SubnetmaskTextBox.Name = "SubnetmaskTextBox";
+            SubnetmaskTextBox.ReadOnly = true;
+            SubnetmaskTextBox.Size = new Size(156, 23);
+            SubnetmaskTextBox.TabIndex = 1;
+            SubnetmaskTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // CIDRGroupBox
             // 
@@ -384,6 +514,17 @@
             CIDRGroupBox.TabIndex = 2;
             CIDRGroupBox.TabStop = false;
             CIDRGroupBox.Text = "CIDR";
+            CIDRGroupBox.Enter += CIDRGroupBox_Enter;
+            // 
+            // CIDRTextBox
+            // 
+            CIDRTextBox.Dock = DockStyle.Fill;
+            CIDRTextBox.Location = new Point(8, 23);
+            CIDRTextBox.Name = "CIDRTextBox";
+            CIDRTextBox.ReadOnly = true;
+            CIDRTextBox.Size = new Size(156, 23);
+            CIDRTextBox.TabIndex = 1;
+            CIDRTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // IPAddressGroupBox
             // 
@@ -396,6 +537,7 @@
             IPAddressGroupBox.TabIndex = 1;
             IPAddressGroupBox.TabStop = false;
             IPAddressGroupBox.Text = "IP-Addresse";
+            IPAddressGroupBox.Enter += IPAddressGroupBox_Enter;
             // 
             // IPAddressTextBox
             // 
@@ -418,6 +560,7 @@
             IPAddressInputGroupBox.TabIndex = 0;
             IPAddressInputGroupBox.TabStop = false;
             IPAddressInputGroupBox.Text = "IP-Addresse/CIDR";
+            IPAddressInputGroupBox.Enter += IPAddressInputGroupBox_Enter;
             // 
             // IPAddressInputTextBox
             // 
@@ -430,86 +573,6 @@
             IPAddressInputTextBox.TextAlign = HorizontalAlignment.Center;
             IPAddressInputTextBox.TextChanged += IPAddressInputTextBox_TextChanged;
             // 
-            // CIDRTextBox
-            // 
-            CIDRTextBox.Dock = DockStyle.Fill;
-            CIDRTextBox.Location = new Point(8, 23);
-            CIDRTextBox.Name = "CIDRTextBox";
-            CIDRTextBox.ReadOnly = true;
-            CIDRTextBox.Size = new Size(156, 23);
-            CIDRTextBox.TabIndex = 1;
-            CIDRTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // SubnetmaskTextBox
-            // 
-            SubnetmaskTextBox.Dock = DockStyle.Fill;
-            SubnetmaskTextBox.Location = new Point(8, 23);
-            SubnetmaskTextBox.Name = "SubnetmaskTextBox";
-            SubnetmaskTextBox.ReadOnly = true;
-            SubnetmaskTextBox.Size = new Size(156, 23);
-            SubnetmaskTextBox.TabIndex = 1;
-            SubnetmaskTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // BroadcastAddressTextBox
-            // 
-            BroadcastAddressTextBox.Dock = DockStyle.Fill;
-            BroadcastAddressTextBox.Location = new Point(8, 23);
-            BroadcastAddressTextBox.Name = "BroadcastAddressTextBox";
-            BroadcastAddressTextBox.ReadOnly = true;
-            BroadcastAddressTextBox.Size = new Size(156, 23);
-            BroadcastAddressTextBox.TabIndex = 1;
-            BroadcastAddressTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // UsableAddressesTextBox
-            // 
-            UsableAddressesTextBox.Dock = DockStyle.Fill;
-            UsableAddressesTextBox.Location = new Point(8, 23);
-            UsableAddressesTextBox.Name = "UsableAddressesTextBox";
-            UsableAddressesTextBox.ReadOnly = true;
-            UsableAddressesTextBox.Size = new Size(156, 23);
-            UsableAddressesTextBox.TabIndex = 1;
-            UsableAddressesTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // LastUsableAddressTextBox
-            // 
-            LastUsableAddressTextBox.Dock = DockStyle.Fill;
-            LastUsableAddressTextBox.Location = new Point(8, 23);
-            LastUsableAddressTextBox.Name = "LastUsableAddressTextBox";
-            LastUsableAddressTextBox.ReadOnly = true;
-            LastUsableAddressTextBox.Size = new Size(156, 23);
-            LastUsableAddressTextBox.TabIndex = 1;
-            LastUsableAddressTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // TotalAddressesTextBox
-            // 
-            TotalAddressesTextBox.Dock = DockStyle.Fill;
-            TotalAddressesTextBox.Location = new Point(8, 23);
-            TotalAddressesTextBox.Name = "TotalAddressesTextBox";
-            TotalAddressesTextBox.ReadOnly = true;
-            TotalAddressesTextBox.Size = new Size(156, 23);
-            TotalAddressesTextBox.TabIndex = 1;
-            TotalAddressesTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // NetworkAddressTextBox
-            // 
-            NetworkAddressTextBox.Dock = DockStyle.Fill;
-            NetworkAddressTextBox.Location = new Point(8, 23);
-            NetworkAddressTextBox.Name = "NetworkAddressTextBox";
-            NetworkAddressTextBox.ReadOnly = true;
-            NetworkAddressTextBox.Size = new Size(156, 23);
-            NetworkAddressTextBox.TabIndex = 1;
-            NetworkAddressTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // FirstUsableAddressTextBox
-            // 
-            FirstUsableAddressTextBox.Dock = DockStyle.Fill;
-            FirstUsableAddressTextBox.Location = new Point(8, 23);
-            FirstUsableAddressTextBox.Name = "FirstUsableAddressTextBox";
-            FirstUsableAddressTextBox.ReadOnly = true;
-            FirstUsableAddressTextBox.Size = new Size(156, 23);
-            FirstUsableAddressTextBox.TabIndex = 1;
-            FirstUsableAddressTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -518,7 +581,10 @@
             Controls.Add(MainTabControl);
             Controls.Add(BorderLabel);
             Controls.Add(HeaderPanel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "MainForm";
             Text = "BSN Tools";
             HeaderPanel.ResumeLayout(false);
@@ -596,5 +662,9 @@
         private TextBox NetworkAddressTextBox;
         private TextBox SubnetmaskTextBox;
         private TextBox CIDRTextBox;
+        private Label ConversionInfoLabel;
+        private Label IPNetworkInfoLabel;
+        private Label VersionLabel;
+        private Label CreditsLabel;
     }
 }
