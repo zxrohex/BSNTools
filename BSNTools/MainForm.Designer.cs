@@ -37,7 +37,8 @@
             pictureBox1 = new PictureBox();
             BorderLabel = new Label();
             MainTabControl = new TabControl();
-            tabPage1 = new TabPage();
+            StartTabPage = new TabPage();
+            NumericSystemConversionsTabPage = new TabPage();
             ConversionInfoLabel = new Label();
             OctetGroupBox = new GroupBox();
             OctetTextBox = new TextBox();
@@ -47,7 +48,7 @@
             BinaryTextBox = new TextBox();
             DecimalGroupBox = new GroupBox();
             DecimalNumericUpDown = new NumericUpDown();
-            tabPage2 = new TabPage();
+            IPv4NetworkTabPage = new TabPage();
             IPNetworkInfoLabel = new Label();
             TotalAddressesGroupBox = new GroupBox();
             TotalAddressesTextBox = new TextBox();
@@ -69,17 +70,22 @@
             IPAddressTextBox = new TextBox();
             IPAddressInputGroupBox = new GroupBox();
             IPAddressInputTextBox = new TextBox();
+            UnitConversionTabPage = new TabPage();
+            label3 = new Label();
+            label4 = new Label();
+            tabPage1 = new TabPage();
             HeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             MainTabControl.SuspendLayout();
-            tabPage1.SuspendLayout();
+            StartTabPage.SuspendLayout();
+            NumericSystemConversionsTabPage.SuspendLayout();
             OctetGroupBox.SuspendLayout();
             HexGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)HexNumericUpDown).BeginInit();
             BinaryGroupBox.SuspendLayout();
             DecimalGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DecimalNumericUpDown).BeginInit();
-            tabPage2.SuspendLayout();
+            IPv4NetworkTabPage.SuspendLayout();
             TotalAddressesGroupBox.SuspendLayout();
             LastUsableAddressGroupBox.SuspendLayout();
             FirstUsableAddressGroupBox.SuspendLayout();
@@ -123,7 +129,7 @@
             VersionLabel.Name = "VersionLabel";
             VersionLabel.Size = new Size(132, 15);
             VersionLabel.TabIndex = 3;
-            VersionLabel.Text = "Version 0.0.0.1-1";
+            VersionLabel.Text = "Version %Version%";
             VersionLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label2
@@ -171,8 +177,11 @@
             // MainTabControl
             // 
             MainTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            MainTabControl.Controls.Add(StartTabPage);
+            MainTabControl.Controls.Add(NumericSystemConversionsTabPage);
+            MainTabControl.Controls.Add(IPv4NetworkTabPage);
+            MainTabControl.Controls.Add(UnitConversionTabPage);
             MainTabControl.Controls.Add(tabPage1);
-            MainTabControl.Controls.Add(tabPage2);
             MainTabControl.Location = new Point(12, 62);
             MainTabControl.Margin = new Padding(2);
             MainTabControl.Name = "MainTabControl";
@@ -180,21 +189,33 @@
             MainTabControl.Size = new Size(550, 345);
             MainTabControl.TabIndex = 2;
             // 
-            // tabPage1
+            // StartTabPage
             // 
-            tabPage1.Controls.Add(ConversionInfoLabel);
-            tabPage1.Controls.Add(OctetGroupBox);
-            tabPage1.Controls.Add(HexGroupBox);
-            tabPage1.Controls.Add(BinaryGroupBox);
-            tabPage1.Controls.Add(DecimalGroupBox);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Margin = new Padding(2);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(542, 317);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Umrechnung";
-            tabPage1.UseVisualStyleBackColor = true;
+            StartTabPage.Controls.Add(label4);
+            StartTabPage.Controls.Add(label3);
+            StartTabPage.Location = new Point(4, 24);
+            StartTabPage.Name = "StartTabPage";
+            StartTabPage.Padding = new Padding(3);
+            StartTabPage.Size = new Size(542, 317);
+            StartTabPage.TabIndex = 2;
+            StartTabPage.Text = "Start";
+            StartTabPage.UseVisualStyleBackColor = true;
+            // 
+            // NumericSystemConversionsTabPage
+            // 
+            NumericSystemConversionsTabPage.Controls.Add(ConversionInfoLabel);
+            NumericSystemConversionsTabPage.Controls.Add(OctetGroupBox);
+            NumericSystemConversionsTabPage.Controls.Add(HexGroupBox);
+            NumericSystemConversionsTabPage.Controls.Add(BinaryGroupBox);
+            NumericSystemConversionsTabPage.Controls.Add(DecimalGroupBox);
+            NumericSystemConversionsTabPage.Location = new Point(4, 24);
+            NumericSystemConversionsTabPage.Margin = new Padding(2);
+            NumericSystemConversionsTabPage.Name = "NumericSystemConversionsTabPage";
+            NumericSystemConversionsTabPage.Padding = new Padding(2);
+            NumericSystemConversionsTabPage.Size = new Size(542, 317);
+            NumericSystemConversionsTabPage.TabIndex = 0;
+            NumericSystemConversionsTabPage.Text = "Umrechnung";
+            NumericSystemConversionsTabPage.UseVisualStyleBackColor = true;
             // 
             // ConversionInfoLabel
             // 
@@ -217,7 +238,7 @@
             OctetGroupBox.TabStop = false;
             OctetGroupBox.Text = "Oktett";
             OctetGroupBox.Enter += OctetGroupBox_Enter;
-            OctetGroupBox.Leave += DecimalGroupBox_Leave;
+            OctetGroupBox.Leave += ConversionGroupBoxes_Leave;
             // 
             // OctetTextBox
             // 
@@ -243,7 +264,7 @@
             HexGroupBox.TabStop = false;
             HexGroupBox.Text = "Hexadezimal";
             HexGroupBox.Enter += HexGroupBox_Enter;
-            HexGroupBox.Leave += DecimalGroupBox_Leave;
+            HexGroupBox.Leave += ConversionGroupBoxes_Leave;
             // 
             // HexNumericUpDown
             // 
@@ -271,7 +292,7 @@
             BinaryGroupBox.TabStop = false;
             BinaryGroupBox.Text = "Binär";
             BinaryGroupBox.Enter += BinaryGroupBox_Enter;
-            BinaryGroupBox.Leave += DecimalGroupBox_Leave;
+            BinaryGroupBox.Leave += ConversionGroupBoxes_Leave;
             // 
             // BinaryTextBox
             // 
@@ -297,7 +318,7 @@
             DecimalGroupBox.TabStop = false;
             DecimalGroupBox.Text = "Dezimal";
             DecimalGroupBox.Enter += DecimalGroupBox_Enter;
-            DecimalGroupBox.Leave += DecimalGroupBox_Leave;
+            DecimalGroupBox.Leave += ConversionGroupBoxes_Leave;
             // 
             // DecimalNumericUpDown
             // 
@@ -311,27 +332,27 @@
             DecimalNumericUpDown.TextAlign = HorizontalAlignment.Center;
             DecimalNumericUpDown.ValueChanged += DecimalNumericUpDown_ValueChanged;
             // 
-            // tabPage2
+            // IPv4NetworkTabPage
             // 
-            tabPage2.Controls.Add(IPNetworkInfoLabel);
-            tabPage2.Controls.Add(TotalAddressesGroupBox);
-            tabPage2.Controls.Add(LastUsableAddressGroupBox);
-            tabPage2.Controls.Add(FirstUsableAddressGroupBox);
-            tabPage2.Controls.Add(UsableAddressesGroupBox);
-            tabPage2.Controls.Add(BroadcastAddressGroupBox);
-            tabPage2.Controls.Add(NetworkAddressGroupBox);
-            tabPage2.Controls.Add(SubnetmaskGroupBox);
-            tabPage2.Controls.Add(CIDRGroupBox);
-            tabPage2.Controls.Add(IPAddressGroupBox);
-            tabPage2.Controls.Add(IPAddressInputGroupBox);
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Margin = new Padding(2);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(2);
-            tabPage2.Size = new Size(542, 317);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "IP/Netzwerke";
-            tabPage2.UseVisualStyleBackColor = true;
+            IPv4NetworkTabPage.Controls.Add(IPNetworkInfoLabel);
+            IPv4NetworkTabPage.Controls.Add(TotalAddressesGroupBox);
+            IPv4NetworkTabPage.Controls.Add(LastUsableAddressGroupBox);
+            IPv4NetworkTabPage.Controls.Add(FirstUsableAddressGroupBox);
+            IPv4NetworkTabPage.Controls.Add(UsableAddressesGroupBox);
+            IPv4NetworkTabPage.Controls.Add(BroadcastAddressGroupBox);
+            IPv4NetworkTabPage.Controls.Add(NetworkAddressGroupBox);
+            IPv4NetworkTabPage.Controls.Add(SubnetmaskGroupBox);
+            IPv4NetworkTabPage.Controls.Add(CIDRGroupBox);
+            IPv4NetworkTabPage.Controls.Add(IPAddressGroupBox);
+            IPv4NetworkTabPage.Controls.Add(IPAddressInputGroupBox);
+            IPv4NetworkTabPage.Location = new Point(4, 24);
+            IPv4NetworkTabPage.Margin = new Padding(2);
+            IPv4NetworkTabPage.Name = "IPv4NetworkTabPage";
+            IPv4NetworkTabPage.Padding = new Padding(2);
+            IPv4NetworkTabPage.Size = new Size(542, 317);
+            IPv4NetworkTabPage.TabIndex = 1;
+            IPv4NetworkTabPage.Text = "IPv4/Netzwerke";
+            IPv4NetworkTabPage.UseVisualStyleBackColor = true;
             // 
             // IPNetworkInfoLabel
             // 
@@ -354,6 +375,7 @@
             TotalAddressesGroupBox.TabStop = false;
             TotalAddressesGroupBox.Text = "Totale Addressen";
             TotalAddressesGroupBox.Enter += TotalAddressesGroupBox_Enter;
+            TotalAddressesGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // TotalAddressesTextBox
             // 
@@ -377,6 +399,7 @@
             LastUsableAddressGroupBox.TabStop = false;
             LastUsableAddressGroupBox.Text = "Letzte nutzbare Addresse";
             LastUsableAddressGroupBox.Enter += LastUsableAddressGroupBox_Enter;
+            LastUsableAddressGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // LastUsableAddressTextBox
             // 
@@ -400,6 +423,7 @@
             FirstUsableAddressGroupBox.TabStop = false;
             FirstUsableAddressGroupBox.Text = "Erste nutzbare Addresse";
             FirstUsableAddressGroupBox.Enter += FirstUsableAddressGroupBox_Enter;
+            FirstUsableAddressGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // FirstUsableAddressTextBox
             // 
@@ -423,6 +447,7 @@
             UsableAddressesGroupBox.TabStop = false;
             UsableAddressesGroupBox.Text = "Nutzbare Addressen";
             UsableAddressesGroupBox.Enter += UsableAddressesGroupBox_Enter;
+            UsableAddressesGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // UsableAddressesTextBox
             // 
@@ -446,6 +471,7 @@
             BroadcastAddressGroupBox.TabStop = false;
             BroadcastAddressGroupBox.Text = "Broadcastaddresse";
             BroadcastAddressGroupBox.Enter += BroadcastAddressGroupBox_Enter;
+            BroadcastAddressGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // BroadcastAddressTextBox
             // 
@@ -469,6 +495,7 @@
             NetworkAddressGroupBox.TabStop = false;
             NetworkAddressGroupBox.Text = "Netzwerkaddresse";
             NetworkAddressGroupBox.Enter += NetworkAddressGroupBox_Enter;
+            NetworkAddressGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // NetworkAddressTextBox
             // 
@@ -492,6 +519,7 @@
             SubnetmaskGroupBox.TabStop = false;
             SubnetmaskGroupBox.Text = "Subnetzmaske";
             SubnetmaskGroupBox.Enter += SubnetmaskGroupBox_Enter;
+            SubnetmaskGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // SubnetmaskTextBox
             // 
@@ -515,6 +543,7 @@
             CIDRGroupBox.TabStop = false;
             CIDRGroupBox.Text = "CIDR";
             CIDRGroupBox.Enter += CIDRGroupBox_Enter;
+            CIDRGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // CIDRTextBox
             // 
@@ -538,6 +567,7 @@
             IPAddressGroupBox.TabStop = false;
             IPAddressGroupBox.Text = "IP-Addresse";
             IPAddressGroupBox.Enter += IPAddressGroupBox_Enter;
+            IPAddressGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // IPAddressTextBox
             // 
@@ -561,6 +591,7 @@
             IPAddressInputGroupBox.TabStop = false;
             IPAddressInputGroupBox.Text = "IP-Addresse/CIDR";
             IPAddressInputGroupBox.Enter += IPAddressInputGroupBox_Enter;
+            IPAddressInputGroupBox.Leave += IPToolsGroupBoxes_Leave;
             // 
             // IPAddressInputTextBox
             // 
@@ -572,6 +603,45 @@
             IPAddressInputTextBox.TabIndex = 0;
             IPAddressInputTextBox.TextAlign = HorizontalAlignment.Center;
             IPAddressInputTextBox.TextChanged += IPAddressInputTextBox_TextChanged;
+            // 
+            // UnitConversionTabPage
+            // 
+            UnitConversionTabPage.Location = new Point(4, 24);
+            UnitConversionTabPage.Name = "UnitConversionTabPage";
+            UnitConversionTabPage.Padding = new Padding(3);
+            UnitConversionTabPage.Size = new Size(542, 317);
+            UnitConversionTabPage.TabIndex = 3;
+            UnitConversionTabPage.Text = "Konversion";
+            UnitConversionTabPage.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.Location = new Point(8, 5);
+            label3.Name = "label3";
+            label3.Size = new Size(158, 15);
+            label3.TabIndex = 0;
+            label3.Text = "Willkommen zu BSN-Tools!";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(8, 20);
+            label4.Name = "label4";
+            label4.Size = new Size(109, 15);
+            label4.TabIndex = 1;
+            label4.Text = "Willkommens-Text.";
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(542, 317);
+            tabPage1.TabIndex = 4;
+            tabPage1.Text = "Über das Programm";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -591,7 +661,9 @@
             HeaderPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             MainTabControl.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
+            StartTabPage.ResumeLayout(false);
+            StartTabPage.PerformLayout();
+            NumericSystemConversionsTabPage.ResumeLayout(false);
             OctetGroupBox.ResumeLayout(false);
             OctetGroupBox.PerformLayout();
             HexGroupBox.ResumeLayout(false);
@@ -600,7 +672,7 @@
             BinaryGroupBox.PerformLayout();
             DecimalGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DecimalNumericUpDown).EndInit();
-            tabPage2.ResumeLayout(false);
+            IPv4NetworkTabPage.ResumeLayout(false);
             TotalAddressesGroupBox.ResumeLayout(false);
             TotalAddressesGroupBox.PerformLayout();
             LastUsableAddressGroupBox.ResumeLayout(false);
@@ -630,8 +702,8 @@
         private Label BorderLabel;
         private PictureBox pictureBox1;
         private TabControl MainTabControl;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
+        private TabPage NumericSystemConversionsTabPage;
+        private TabPage IPv4NetworkTabPage;
         private Label label1;
         private Label label2;
         private GroupBox OctetGroupBox;
@@ -666,5 +738,10 @@
         private Label IPNetworkInfoLabel;
         private Label VersionLabel;
         private Label CreditsLabel;
+        private TabPage StartTabPage;
+        private TabPage UnitConversionTabPage;
+        private Label label3;
+        private Label label4;
+        private TabPage tabPage1;
     }
 }
