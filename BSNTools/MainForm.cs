@@ -1,4 +1,6 @@
 using BSNTools.Core.IP;
+
+using System.Diagnostics;
 using System.Net;
 using System.Reflection;
 
@@ -15,6 +17,39 @@ namespace BSNTools
             InitializeComponent();
 
             VersionLabel.Text = $"Version {Assembly.GetExecutingAssembly().GetName().Version}";
+
+            AboutVersionLabel.Text = $"Version {Assembly.GetExecutingAssembly().GetName().Version}";
+
+            RandomizeAboutDescriptionQuotes();
+        }
+
+        private void RandomizeAboutDescriptionQuotes()
+        {
+            int rng = Random.Shared.Next(0, 4);
+
+            switch (rng)
+            {
+                case 0:
+                    AboutDescriptionLabel.Text = "Automatisierte Berechnungen & Lernhilfen für das Fach Betriebssysteme und Netzwerke.";
+                    break;
+
+                case 1:
+                    AboutDescriptionLabel.Text = "BSN Tools: Dein Helfer für Netzwerktechnik und Zahlensysteme im ITA-Fachabi.";
+                    break;
+
+                default:
+                case 2:
+                    AboutDescriptionLabel.Text = "Automatisierte Berechnungen & Lernhilfen für das Fach Betriebssysteme und Netzwerke.";
+                    break;
+
+                case 3:
+                    AboutDescriptionLabel.Text = "Hilfsprogramme für BSN: Berechne Netzwerke und Zahlensysteme effizient (ITA-Fachabi)";
+                    break;
+
+                case 4:
+                    AboutDescriptionLabel.Text = "BSN-Tools (ITA): Netzwerk- & Zahlensystem-Berechnungen einfach automatisiert.";
+                    break;
+            }
         }
 
         private void UpdateConversions()
@@ -196,8 +231,20 @@ namespace BSNTools
         }
 
         private void IPToolsGroupBoxes_Leave(object sender, EventArgs e)
-        {            
+        {
             UpdateInfoLabel(2, "");
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AboutGHRepoLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+                ()
+            { FileName = "https://github.com/zxrohex/BSNTools",  UseShellExecute = true });
         }
     }
 }

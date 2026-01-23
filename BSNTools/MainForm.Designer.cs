@@ -38,6 +38,8 @@
             BorderLabel = new Label();
             MainTabControl = new TabControl();
             StartTabPage = new TabPage();
+            label4 = new Label();
+            label3 = new Label();
             NumericSystemConversionsTabPage = new TabPage();
             ConversionInfoLabel = new Label();
             OctetGroupBox = new GroupBox();
@@ -71,9 +73,13 @@
             IPAddressInputGroupBox = new GroupBox();
             IPAddressInputTextBox = new TextBox();
             UnitConversionTabPage = new TabPage();
-            label3 = new Label();
-            label4 = new Label();
             tabPage1 = new TabPage();
+            AboutGHRepoLinkLabel = new LinkLabel();
+            AboutVersionLabel = new Label();
+            AboutCreatorLabel = new Label();
+            AboutDescriptionLabel = new Label();
+            AboutTitleLabel = new Label();
+            AboutPictureBox = new PictureBox();
             HeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             MainTabControl.SuspendLayout();
@@ -96,6 +102,8 @@
             CIDRGroupBox.SuspendLayout();
             IPAddressGroupBox.SuspendLayout();
             IPAddressInputGroupBox.SuspendLayout();
+            tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AboutPictureBox).BeginInit();
             SuspendLayout();
             // 
             // HeaderPanel
@@ -200,6 +208,24 @@
             StartTabPage.TabIndex = 2;
             StartTabPage.Text = "Start";
             StartTabPage.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.Location = new Point(8, 20);
+            label4.Name = "label4";
+            label4.Size = new Size(528, 216);
+            label4.TabIndex = 1;
+            label4.Text = resources.GetString("label4.Text");
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.Location = new Point(8, 5);
+            label3.Name = "label3";
+            label3.Size = new Size(158, 15);
+            label3.TabIndex = 0;
+            label3.Text = "Willkommen zu BSN-Tools!";
             // 
             // NumericSystemConversionsTabPage
             // 
@@ -614,34 +640,81 @@
             UnitConversionTabPage.Text = "Konversion";
             UnitConversionTabPage.UseVisualStyleBackColor = true;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(8, 5);
-            label3.Name = "label3";
-            label3.Size = new Size(158, 15);
-            label3.TabIndex = 0;
-            label3.Text = "Willkommen zu BSN-Tools!";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(8, 20);
-            label4.Name = "label4";
-            label4.Size = new Size(109, 15);
-            label4.TabIndex = 1;
-            label4.Text = "Willkommens-Text.";
-            // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(AboutGHRepoLinkLabel);
+            tabPage1.Controls.Add(AboutVersionLabel);
+            tabPage1.Controls.Add(AboutCreatorLabel);
+            tabPage1.Controls.Add(AboutDescriptionLabel);
+            tabPage1.Controls.Add(AboutTitleLabel);
+            tabPage1.Controls.Add(AboutPictureBox);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(542, 317);
             tabPage1.TabIndex = 4;
-            tabPage1.Text = "Über das Programm";
+            tabPage1.Text = "u";
             tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click;
+            // 
+            // AboutGHRepoLinkLabel
+            // 
+            AboutGHRepoLinkLabel.AutoSize = true;
+            AboutGHRepoLinkLabel.Location = new Point(218, 271);
+            AboutGHRepoLinkLabel.Name = "AboutGHRepoLinkLabel";
+            AboutGHRepoLinkLabel.Size = new Size(106, 15);
+            AboutGHRepoLinkLabel.TabIndex = 5;
+            AboutGHRepoLinkLabel.TabStop = true;
+            AboutGHRepoLinkLabel.Text = "GitHub-Repository";
+            AboutGHRepoLinkLabel.LinkClicked += AboutGHRepoLinkLabel_LinkClicked;
+            // 
+            // AboutVersionLabel
+            // 
+            AboutVersionLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            AboutVersionLabel.Location = new Point(23, 189);
+            AboutVersionLabel.Name = "AboutVersionLabel";
+            AboutVersionLabel.Size = new Size(496, 16);
+            AboutVersionLabel.TabIndex = 4;
+            AboutVersionLabel.Text = "Version %Version%";
+            AboutVersionLabel.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // AboutCreatorLabel
+            // 
+            AboutCreatorLabel.AutoSize = true;
+            AboutCreatorLabel.Location = new Point(138, 243);
+            AboutCreatorLabel.Name = "AboutCreatorLabel";
+            AboutCreatorLabel.Size = new Size(266, 15);
+            AboutCreatorLabel.TabIndex = 3;
+            AboutCreatorLabel.Text = "Erstellt von CalamitySasha/memalloc/Sasha Lynn";
+            // 
+            // AboutDescriptionLabel
+            // 
+            AboutDescriptionLabel.Location = new Point(23, 215);
+            AboutDescriptionLabel.Name = "AboutDescriptionLabel";
+            AboutDescriptionLabel.Size = new Size(496, 16);
+            AboutDescriptionLabel.TabIndex = 2;
+            AboutDescriptionLabel.Text = "Hilfsprogramme für BSN: Berechne Netzwerke und Zahlensysteme effizient (ITA-Fachabi).";
+            AboutDescriptionLabel.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // AboutTitleLabel
+            // 
+            AboutTitleLabel.AutoSize = true;
+            AboutTitleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            AboutTitleLabel.Location = new Point(153, 174);
+            AboutTitleLabel.Name = "AboutTitleLabel";
+            AboutTitleLabel.Size = new Size(236, 15);
+            AboutTitleLabel.TabIndex = 1;
+            AboutTitleLabel.Text = "BSN Tools - Tools für den BSN-Unterricht";
+            // 
+            // AboutPictureBox
+            // 
+            AboutPictureBox.Image = Properties.Resources.BSNToolsLogoNoBG;
+            AboutPictureBox.Location = new Point(176, 21);
+            AboutPictureBox.Name = "AboutPictureBox";
+            AboutPictureBox.Size = new Size(191, 165);
+            AboutPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            AboutPictureBox.TabIndex = 0;
+            AboutPictureBox.TabStop = false;
             // 
             // MainForm
             // 
@@ -693,6 +766,9 @@
             IPAddressGroupBox.PerformLayout();
             IPAddressInputGroupBox.ResumeLayout(false);
             IPAddressInputGroupBox.PerformLayout();
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)AboutPictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -743,5 +819,11 @@
         private Label label3;
         private Label label4;
         private TabPage tabPage1;
+        private Label AboutTitleLabel;
+        private PictureBox AboutPictureBox;
+        private Label AboutDescriptionLabel;
+        private LinkLabel AboutGHRepoLinkLabel;
+        private Label AboutVersionLabel;
+        private Label AboutCreatorLabel;
     }
 }
