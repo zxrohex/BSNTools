@@ -653,7 +653,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(542, 317);
             tabPage1.TabIndex = 4;
-            tabPage1.Text = "u";
+            tabPage1.Text = "Über das Programm";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
