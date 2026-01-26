@@ -1,8 +1,11 @@
 using BSNTools.Core.IP;
+using BSNTools.Core.Conversion;
 
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
+using UnitsNet;
+using UnitsNet.Units;
 
 namespace BSNTools
 {
@@ -10,7 +13,15 @@ namespace BSNTools
     {
         int decimalNumber = 0;
 
+        int mainConversionUnitValue = 0;
+
         IPNetwork2 ipNetwork;
+
+        InformationUnit unit1 = InformationUnit.Bit;
+        InformationUnit unit2 = InformationUnit.Byte;
+        InformationUnit unit3 = InformationUnit.Kilobyte;
+
+        Version version = Assembly.GetExecutingAssembly().GetName().Version;
 
         public MainForm()
         {
@@ -25,14 +36,16 @@ namespace BSNTools
 
         private void InitializeVersionLabels()
         {
-            VersionLabel.Text = $"Version {Assembly.GetExecutingAssembly().GetName().Version}";
+            // build und revision sind vertauscht (da ich revision als build nummer nutze)
 
-            AboutVersionLabel.Text = $"Version {Assembly.GetExecutingAssembly().GetName().Version}";
+            VersionLabel.Text = $"Version {version.Major}.{version.Minor}.{version.Build} Build {version.Revision}";
+
+            AboutVersionLabel.Text = $"Version {version.Major}.{version.Minor}.{version.Build} Build {version.Revision}";
         }
 
         private void LoadUnitsIntoComboBoxes()
         {
-            var units = Enum.GetValues(typeof(Core.Conversion.Unit)).Cast<Core.Conversion.Unit>();
+            var units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>();
 
             foreach (var unit in units)
             {
@@ -258,10 +271,6 @@ namespace BSNTools
             UpdateInfoLabel(2, "");
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void AboutGHRepoLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -270,19 +279,34 @@ namespace BSNTools
             { FileName = "https://github.com/zxrohex/BSNTools", UseShellExecute = true });
         }
 
+        private void DoConversions()
+        {
+         
+        }
+
         private void ConversionOneComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            unit1 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionOneComboBox.SelectedItem.ToString());
         }
 
         private void ConversionTwoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            unit2 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionTwoComboBox.SelectedItem.ToString());
         }
 
         private void ConversionThreeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            unit3 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionThreeComboBox.SelectedItem.ToString());
+        }
 
+        private void ConversionOneNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ConversionTwoNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            mainConversionUnitValue = (int)ConversionOneNumericUpDown.Value;
         }
     }
 }

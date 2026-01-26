@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="MainTabControl.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="label4.Text" xml:space="preserve">
     <value>Dieses Programm wurde entwickelt, um dich im Fach Betriebssysteme und Netzwerke (BSN) zu unterstützen. Es vereint nützliche Werkzeuge für den täglichen Unterricht und Klausurvorbereitungen.
 

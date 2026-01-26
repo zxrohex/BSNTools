@@ -72,6 +72,7 @@
             IPAddressTextBox = new TextBox();
             IPAddressInputGroupBox = new GroupBox();
             IPAddressInputTextBox = new TextBox();
+            SubnettingTabPage = new TabPage();
             UnitConversionTabPage = new TabPage();
             ConversionThreeComboBox = new ComboBox();
             ConversionTwoComboBox = new ComboBox();
@@ -82,7 +83,7 @@
             ConversionThreeNumericUpDown = new NumericUpDown();
             ConversionOneGroupBox = new GroupBox();
             ConversionOneNumericUpDown = new NumericUpDown();
-            tabPage1 = new TabPage();
+            AboutTabPage = new TabPage();
             AboutGHRepoLinkLabel = new LinkLabel();
             AboutVersionLabel = new Label();
             AboutCreatorLabel = new Label();
@@ -118,7 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)ConversionThreeNumericUpDown).BeginInit();
             ConversionOneGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ConversionOneNumericUpDown).BeginInit();
-            tabPage1.SuspendLayout();
+            AboutTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AboutPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -149,9 +150,9 @@
             // VersionLabel
             // 
             VersionLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            VersionLabel.Location = new Point(430, 11);
+            VersionLabel.Location = new Point(369, 11);
             VersionLabel.Name = "VersionLabel";
-            VersionLabel.Size = new Size(132, 15);
+            VersionLabel.Size = new Size(193, 15);
             VersionLabel.TabIndex = 3;
             VersionLabel.Text = "Version %Version%";
             VersionLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -204,8 +205,9 @@
             MainTabControl.Controls.Add(StartTabPage);
             MainTabControl.Controls.Add(NumericSystemConversionsTabPage);
             MainTabControl.Controls.Add(IPv4NetworkTabPage);
+            MainTabControl.Controls.Add(SubnettingTabPage);
             MainTabControl.Controls.Add(UnitConversionTabPage);
-            MainTabControl.Controls.Add(tabPage1);
+            MainTabControl.Controls.Add(AboutTabPage);
             MainTabControl.Location = new Point(12, 62);
             MainTabControl.Margin = new Padding(2);
             MainTabControl.Name = "MainTabControl";
@@ -646,6 +648,16 @@
             IPAddressInputTextBox.TextAlign = HorizontalAlignment.Center;
             IPAddressInputTextBox.TextChanged += IPAddressInputTextBox_TextChanged;
             // 
+            // SubnettingTabPage
+            // 
+            SubnettingTabPage.Location = new Point(4, 24);
+            SubnettingTabPage.Name = "SubnettingTabPage";
+            SubnettingTabPage.Padding = new Padding(3);
+            SubnettingTabPage.Size = new Size(542, 317);
+            SubnettingTabPage.TabIndex = 5;
+            SubnettingTabPage.Text = "Subnetting";
+            SubnettingTabPage.UseVisualStyleBackColor = true;
+            // 
             // UnitConversionTabPage
             // 
             UnitConversionTabPage.Controls.Add(ConversionThreeComboBox);
@@ -708,6 +720,7 @@
             ConversionTwoNumericUpDown.Name = "ConversionTwoNumericUpDown";
             ConversionTwoNumericUpDown.Size = new Size(174, 23);
             ConversionTwoNumericUpDown.TabIndex = 1;
+            ConversionTwoNumericUpDown.ValueChanged += ConversionTwoNumericUpDown_ValueChanged;
             // 
             // ConversionThreeGroupBox
             // 
@@ -742,23 +755,23 @@
             ConversionOneNumericUpDown.Name = "ConversionOneNumericUpDown";
             ConversionOneNumericUpDown.Size = new Size(174, 23);
             ConversionOneNumericUpDown.TabIndex = 1;
+            ConversionOneNumericUpDown.ValueChanged += ConversionOneNumericUpDown_ValueChanged;
             // 
-            // tabPage1
+            // AboutTabPage
             // 
-            tabPage1.Controls.Add(AboutGHRepoLinkLabel);
-            tabPage1.Controls.Add(AboutVersionLabel);
-            tabPage1.Controls.Add(AboutCreatorLabel);
-            tabPage1.Controls.Add(AboutDescriptionLabel);
-            tabPage1.Controls.Add(AboutTitleLabel);
-            tabPage1.Controls.Add(AboutPictureBox);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(542, 317);
-            tabPage1.TabIndex = 4;
-            tabPage1.Text = "Über das Programm";
-            tabPage1.UseVisualStyleBackColor = true;
-            tabPage1.Click += tabPage1_Click;
+            AboutTabPage.Controls.Add(AboutGHRepoLinkLabel);
+            AboutTabPage.Controls.Add(AboutVersionLabel);
+            AboutTabPage.Controls.Add(AboutCreatorLabel);
+            AboutTabPage.Controls.Add(AboutDescriptionLabel);
+            AboutTabPage.Controls.Add(AboutTitleLabel);
+            AboutTabPage.Controls.Add(AboutPictureBox);
+            AboutTabPage.Location = new Point(4, 24);
+            AboutTabPage.Name = "AboutTabPage";
+            AboutTabPage.Padding = new Padding(3);
+            AboutTabPage.Size = new Size(542, 317);
+            AboutTabPage.TabIndex = 4;
+            AboutTabPage.Text = "Über das Programm";
+            AboutTabPage.UseVisualStyleBackColor = true;
             // 
             // AboutGHRepoLinkLabel
             // 
@@ -876,8 +889,8 @@
             ((System.ComponentModel.ISupportInitialize)ConversionThreeNumericUpDown).EndInit();
             ConversionOneGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ConversionOneNumericUpDown).EndInit();
-            tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
+            AboutTabPage.ResumeLayout(false);
+            AboutTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AboutPictureBox).EndInit();
             ResumeLayout(false);
         }
@@ -928,7 +941,7 @@
         private TabPage UnitConversionTabPage;
         private Label label3;
         private Label label4;
-        private TabPage tabPage1;
+        private TabPage AboutTabPage;
         private Label AboutTitleLabel;
         private PictureBox AboutPictureBox;
         private Label AboutDescriptionLabel;
@@ -944,5 +957,6 @@
         private NumericUpDown ConversionTwoNumericUpDown;
         private NumericUpDown ConversionThreeNumericUpDown;
         private NumericUpDown ConversionOneNumericUpDown;
+        private TabPage SubnettingTabPage;
     }
 }
