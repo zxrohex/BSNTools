@@ -4,8 +4,11 @@ using BSNTools.Core.Conversion;
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
+
 using UnitsNet;
 using UnitsNet.Units;
+using BSNTools.UI.Controls;
+using System.Runtime.CompilerServices;
 
 namespace BSNTools
 {
@@ -13,13 +16,14 @@ namespace BSNTools
     {
         int decimalNumber = 0;
 
+        bool isUpdatingDecimal = false;
+
         Information mainConversionUnitValue;
 
         IPNetwork2 ipNetwork;
 
-        InformationUnit unit1 = InformationUnit.Bit;
-        InformationUnit unit2 = InformationUnit.Byte;
-        InformationUnit unit3 = InformationUnit.Kilobyte;
+        InformationUnit firstUnit = InformationUnit.Bit;
+        InformationUnit secondUnit = InformationUnit.Byte;
 
         Version version = Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -39,7 +43,7 @@ namespace BSNTools
             // build und revision sind vertauscht (da ich revision als build nummer nutze)
 
             VersionLabel.Text = $"Version {version.Major}.{version.Minor}.{version.Build} Build {version.Revision}";
-   
+
             AboutVersionLabel.Text = $"Version {version.Major}.{version.Minor}.{version.Build} Build {version.Revision}";
         }
 
@@ -49,14 +53,12 @@ namespace BSNTools
 
             foreach (var unit in units)
             {
-                ConversionOneComboBox.Items.Add(unit.ToString());
-                ConversionTwoComboBox.Items.Add(unit.ToString());
-                ConversionThreeComboBox.Items.Add(unit.ToString());
+                FirstUnitComboBox.Items.Add(unit.ToString());
+                SecondUnitComboBox.Items.Add(unit.ToString());
             }
 
-            ConversionOneComboBox.SelectedIndex = 0;
-            ConversionTwoComboBox.SelectedIndex = 1;
-            ConversionThreeComboBox.SelectedIndex = 2;
+            FirstUnitComboBox.SelectedIndex = 0;
+            SecondUnitComboBox.SelectedIndex = 1;
         }
 
         private void RandomizeAboutDescriptionQuotes()
@@ -90,10 +92,17 @@ namespace BSNTools
 
         private void UpdateConversions()
         {
+            if (isUpdatingDecimal) return;
+
+            isUpdatingDecimal = true;
+
             DecimalNumericUpDown.Value = decimalNumber;
             BinaryTextBox.Text = Convert.ToString(decimalNumber, 2);
             HexNumericUpDown.Value = decimalNumber;
             OctetTextBox.Text = Convert.ToString(decimalNumber, 8);
+            UpdateBinaryTable();
+
+            isUpdatingDecimal = false;
         }
 
         private void UpdateNetworkInfo()
@@ -129,6 +138,8 @@ namespace BSNTools
 
         private void DecimalNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
+            if (isUpdatingDecimal) return;
+
             decimalNumber = (int)DecimalNumericUpDown.Value;
 
             UpdateConversions();
@@ -136,6 +147,8 @@ namespace BSNTools
 
         private void BinaryTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (isUpdatingDecimal) return;
+
             try
             {
                 decimalNumber = Convert.ToInt32(BinaryTextBox.Text, 2);
@@ -153,6 +166,8 @@ namespace BSNTools
 
         private void HexNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
+            if (isUpdatingDecimal) return;
+
             decimalNumber = (int)HexNumericUpDown.Value;
 
             UpdateConversions();
@@ -160,6 +175,8 @@ namespace BSNTools
 
         private void OctetTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (isUpdatingDecimal) return;
+
             try
             {
                 decimalNumber = Convert.ToInt32(OctetTextBox.Text, 8);
@@ -281,81 +298,169 @@ namespace BSNTools
 
         private void DoConversions()
         {
-            ConversionOneNumericUpDown.Value = (decimal)mainConversionUnitValue.As(unit1);
-            ConversionTwoNumericUpDown.Value = (decimal)mainConversionUnitValue.As(unit2);
-            ConversionThreeNumericUpDown.Value = (decimal)mainConversionUnitValue.As(unit3);
+            FirstUnitNumericUpDown.Value = (decimal)mainConversionUnitValue.As(firstUnit);
+            SecondUnitNumericUpDown.Value = (decimal)mainConversionUnitValue.As(secondUnit);
         }
 
-        private void ConversionOneComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateHelp()
         {
-            unit1 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionOneComboBox.SelectedItem.ToString());
+            
+        }
 
-            if (unit1 == InformationUnit.Bit)
+        private void UpdateBinaryTable()
+        {
+
+            BinaryTableTableLayoutPanel.ColumnStyles.Clear();
+            BinaryTableTableLayoutPanel.Controls.Clear();
+
+
+            string binaryRepresentation = Convert.ToString(decimalNumber, 2);
+
+            var table = ConversionTools.GenerateBinaryTable(binaryRepresentation);
+
+            BinaryTableTableLayoutPanel.ColumnCount = table.Keys.Count;
+
+            BinaryTableTableLayoutPanel.RowCount = 1;
+
+            BinaryTableTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+            BinaryTableTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50));
+
+            int pos = 0;
+
+            foreach (var i in table.Reverse())
             {
-                ConversionOneNumericUpDown.DecimalPlaces = 0;
+                Label pow = new Label() 
+                { 
+                    Text = i.Key.ToString(),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    AutoSize = false,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold, GraphicsUnit.Point),
+                    Size = new Size(50, 40)
+                };
 
+
+                BinaryTableTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50));
+
+
+
+                BinaryTableTableLayoutPanel.Controls.Add(pow, column: pos, row: 0);
+
+                Label value = new Label();
+
+                value.Text = i.Value.ToString();
+
+                BinaryTableTableLayoutPanel.Controls.Add(value, column: pos, row: 1);
+
+       
+                pos++;
+            }
+
+        }
+
+        private void FirstUnitComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            firstUnit = Enum.Parse<InformationUnit>(FirstUnitComboBox.SelectedItem.ToString());
+
+            if (firstUnit == secondUnit)
+            {
+                // Swap second unit to avoid same units
+                int newIndex = (FirstUnitComboBox.SelectedIndex + 1) % FirstUnitComboBox.Items.Count;
+                SecondUnitComboBox.SelectedIndex = newIndex;
+            }
+
+            if (firstUnit == InformationUnit.Bit)
+            {
+                FirstUnitNumericUpDown.DecimalPlaces = 1;
             }
             else
             {
-                ConversionOneNumericUpDown.DecimalPlaces = 4;
+                FirstUnitNumericUpDown.DecimalPlaces = 3;
             }
 
             DoConversions();
         }
 
-        private void ConversionTwoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void SecondUnitComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            unit2 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionTwoComboBox.SelectedItem.ToString());
+            secondUnit = Enum.Parse<InformationUnit>(SecondUnitComboBox.SelectedItem.ToString());
 
-            if (unit2 == InformationUnit.Bit)
+            if (secondUnit == firstUnit)
             {
-                ConversionTwoNumericUpDown.DecimalPlaces = 0;
+                int newIndex = (SecondUnitComboBox.SelectedIndex + 1) % SecondUnitComboBox.Items.Count;
+                FirstUnitComboBox.SelectedIndex = newIndex;
+            }
 
+            if (secondUnit == InformationUnit.Bit)
+            {
+                SecondUnitNumericUpDown.DecimalPlaces = 1;
             }
             else
             {
-                ConversionTwoNumericUpDown.DecimalPlaces = 4;
+                SecondUnitNumericUpDown.DecimalPlaces = 3;
             }
 
             DoConversions();
         }
 
-        private void ConversionThreeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FirstUnitNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            unit3 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionThreeComboBox.SelectedItem.ToString());
+            mainConversionUnitValue = Information.From((double)FirstUnitNumericUpDown.Value, firstUnit);
 
-            if (unit3 == InformationUnit.Bit)
+            DoConversions();
+        }
+
+        private void SecondUnitNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            mainConversionUnitValue = Information.From((double)SecondUnitNumericUpDown.Value, secondUnit);
+
+            DoConversions();
+        }
+
+        private void ToggleHelpButton_Click(object sender, EventArgs e)
+        {
+            if (UnitConversionSplitContainer.Panel2Collapsed)
             {
-                ConversionThreeNumericUpDown.DecimalPlaces = 0;
-
+                UnitConversionSplitContainer.Panel2Collapsed = false;
             }
             else
             {
-                ConversionThreeNumericUpDown.DecimalPlaces = 4;
+                UnitConversionSplitContainer.Panel2Collapsed = true;
             }
-
-            DoConversions();
         }
 
-        private void ConversionOneNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void CalculateSubnetButton_Click(object sender, EventArgs e)
         {
-            mainConversionUnitValue = Information.From((double)ConversionOneNumericUpDown.Value, unit1);
-
-            DoConversions();
+            MakeSubnets();
         }
 
-        private void ConversionTwoNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void MakeSubnets()
         {
-            mainConversionUnitValue = Information.From((double)ConversionTwoNumericUpDown.Value, unit2);
+            try
+            {
+                if (SubnetsTabControl.TabPages.Count > 0)
+                {
+                    SubnetsTabControl.TabPages.Clear();
+                }
 
-            DoConversions();
-        }
+                IPNetwork2 mainNetwork = IPNetwork2.Parse(IPAndCIDRInputTextBox.Text);
 
-        private void ConversionThreeNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            mainConversionUnitValue = Information.From((double)ConversionThreeNumericUpDown.Value, unit3);
+                var subnets = mainNetwork.Subnet(Convert.ToByte(CIDRInputTextBox.Text));
 
-            DoConversions();
+                foreach (var i in subnets)
+                {
+                    TabPage tabPage = new TabPage(i.ToString());
+                    IPSubnetInfo ipSubnetInfoControl = new IPSubnetInfo(i);
+                    ipSubnetInfoControl.Dock = DockStyle.Fill;
+                    tabPage.Controls.Add(ipSubnetInfoControl);
+                    SubnetsTabControl.TabPages.Add(tabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fataler Fehler: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
