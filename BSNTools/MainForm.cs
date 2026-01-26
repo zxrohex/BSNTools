@@ -16,11 +16,34 @@ namespace BSNTools
         {
             InitializeComponent();
 
+            InitializeVersionLabels();
+
+            RandomizeAboutDescriptionQuotes();
+
+            LoadUnitsIntoComboBoxes();
+        }
+
+        private void InitializeVersionLabels()
+        {
             VersionLabel.Text = $"Version {Assembly.GetExecutingAssembly().GetName().Version}";
 
             AboutVersionLabel.Text = $"Version {Assembly.GetExecutingAssembly().GetName().Version}";
+        }
 
-            RandomizeAboutDescriptionQuotes();
+        private void LoadUnitsIntoComboBoxes()
+        {
+            var units = Enum.GetValues(typeof(Core.Conversion.Unit)).Cast<Core.Conversion.Unit>();
+
+            foreach (var unit in units)
+            {
+                ConversionOneComboBox.Items.Add(unit.ToString());
+                ConversionTwoComboBox.Items.Add(unit.ToString());
+                ConversionThreeComboBox.Items.Add(unit.ToString());
+            }
+
+            ConversionOneComboBox.SelectedIndex = 0;
+            ConversionTwoComboBox.SelectedIndex = 1;
+            ConversionThreeComboBox.SelectedIndex = 2;
         }
 
         private void RandomizeAboutDescriptionQuotes()
@@ -244,7 +267,22 @@ namespace BSNTools
         {
             Process.Start(new ProcessStartInfo
                 ()
-            { FileName = "https://github.com/zxrohex/BSNTools",  UseShellExecute = true });
+            { FileName = "https://github.com/zxrohex/BSNTools", UseShellExecute = true });
+        }
+
+        private void ConversionOneComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConversionTwoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConversionThreeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

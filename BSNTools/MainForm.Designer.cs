@@ -73,6 +73,15 @@
             IPAddressInputGroupBox = new GroupBox();
             IPAddressInputTextBox = new TextBox();
             UnitConversionTabPage = new TabPage();
+            ConversionThreeComboBox = new ComboBox();
+            ConversionTwoComboBox = new ComboBox();
+            ConversionOneComboBox = new ComboBox();
+            ConversionTwoGroupBox = new GroupBox();
+            ConversionTwoNumericUpDown = new NumericUpDown();
+            ConversionThreeGroupBox = new GroupBox();
+            ConversionThreeNumericUpDown = new NumericUpDown();
+            ConversionOneGroupBox = new GroupBox();
+            ConversionOneNumericUpDown = new NumericUpDown();
             tabPage1 = new TabPage();
             AboutGHRepoLinkLabel = new LinkLabel();
             AboutVersionLabel = new Label();
@@ -102,6 +111,13 @@
             CIDRGroupBox.SuspendLayout();
             IPAddressGroupBox.SuspendLayout();
             IPAddressInputGroupBox.SuspendLayout();
+            UnitConversionTabPage.SuspendLayout();
+            ConversionTwoGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ConversionTwoNumericUpDown).BeginInit();
+            ConversionThreeGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ConversionThreeNumericUpDown).BeginInit();
+            ConversionOneGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ConversionOneNumericUpDown).BeginInit();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AboutPictureBox).BeginInit();
             SuspendLayout();
@@ -632,6 +648,12 @@
             // 
             // UnitConversionTabPage
             // 
+            UnitConversionTabPage.Controls.Add(ConversionThreeComboBox);
+            UnitConversionTabPage.Controls.Add(ConversionTwoComboBox);
+            UnitConversionTabPage.Controls.Add(ConversionOneComboBox);
+            UnitConversionTabPage.Controls.Add(ConversionTwoGroupBox);
+            UnitConversionTabPage.Controls.Add(ConversionThreeGroupBox);
+            UnitConversionTabPage.Controls.Add(ConversionOneGroupBox);
             UnitConversionTabPage.Location = new Point(4, 24);
             UnitConversionTabPage.Name = "UnitConversionTabPage";
             UnitConversionTabPage.Padding = new Padding(3);
@@ -639,6 +661,87 @@
             UnitConversionTabPage.TabIndex = 3;
             UnitConversionTabPage.Text = "Konversion";
             UnitConversionTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ConversionThreeComboBox
+            // 
+            ConversionThreeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ConversionThreeComboBox.FormattingEnabled = true;
+            ConversionThreeComboBox.Location = new Point(437, 211);
+            ConversionThreeComboBox.Name = "ConversionThreeComboBox";
+            ConversionThreeComboBox.Size = new Size(87, 23);
+            ConversionThreeComboBox.TabIndex = 5;
+            ConversionThreeComboBox.SelectedIndexChanged += ConversionThreeComboBox_SelectedIndexChanged;
+            // 
+            // ConversionTwoComboBox
+            // 
+            ConversionTwoComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ConversionTwoComboBox.FormattingEnabled = true;
+            ConversionTwoComboBox.Location = new Point(437, 111);
+            ConversionTwoComboBox.Name = "ConversionTwoComboBox";
+            ConversionTwoComboBox.Size = new Size(87, 23);
+            ConversionTwoComboBox.TabIndex = 4;
+            ConversionTwoComboBox.SelectedIndexChanged += ConversionTwoComboBox_SelectedIndexChanged;
+            // 
+            // ConversionOneComboBox
+            // 
+            ConversionOneComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ConversionOneComboBox.FormattingEnabled = true;
+            ConversionOneComboBox.Location = new Point(437, 10);
+            ConversionOneComboBox.Name = "ConversionOneComboBox";
+            ConversionOneComboBox.Size = new Size(87, 23);
+            ConversionOneComboBox.TabIndex = 3;
+            ConversionOneComboBox.SelectedIndexChanged += ConversionOneComboBox_SelectedIndexChanged;
+            // 
+            // ConversionTwoGroupBox
+            // 
+            ConversionTwoGroupBox.Controls.Add(ConversionTwoNumericUpDown);
+            ConversionTwoGroupBox.Location = new Point(9, 113);
+            ConversionTwoGroupBox.Name = "ConversionTwoGroupBox";
+            ConversionTwoGroupBox.Size = new Size(527, 87);
+            ConversionTwoGroupBox.TabIndex = 1;
+            ConversionTwoGroupBox.TabStop = false;
+            ConversionTwoGroupBox.Text = "Umrechnung #2";
+            // 
+            // ConversionTwoNumericUpDown
+            // 
+            ConversionTwoNumericUpDown.Location = new Point(176, 32);
+            ConversionTwoNumericUpDown.Name = "ConversionTwoNumericUpDown";
+            ConversionTwoNumericUpDown.Size = new Size(174, 23);
+            ConversionTwoNumericUpDown.TabIndex = 1;
+            // 
+            // ConversionThreeGroupBox
+            // 
+            ConversionThreeGroupBox.Controls.Add(ConversionThreeNumericUpDown);
+            ConversionThreeGroupBox.Location = new Point(8, 213);
+            ConversionThreeGroupBox.Name = "ConversionThreeGroupBox";
+            ConversionThreeGroupBox.Size = new Size(527, 87);
+            ConversionThreeGroupBox.TabIndex = 2;
+            ConversionThreeGroupBox.TabStop = false;
+            ConversionThreeGroupBox.Text = "Umrechnung #3";
+            // 
+            // ConversionThreeNumericUpDown
+            // 
+            ConversionThreeNumericUpDown.Location = new Point(176, 32);
+            ConversionThreeNumericUpDown.Name = "ConversionThreeNumericUpDown";
+            ConversionThreeNumericUpDown.Size = new Size(174, 23);
+            ConversionThreeNumericUpDown.TabIndex = 0;
+            // 
+            // ConversionOneGroupBox
+            // 
+            ConversionOneGroupBox.Controls.Add(ConversionOneNumericUpDown);
+            ConversionOneGroupBox.Location = new Point(8, 13);
+            ConversionOneGroupBox.Name = "ConversionOneGroupBox";
+            ConversionOneGroupBox.Size = new Size(527, 87);
+            ConversionOneGroupBox.TabIndex = 0;
+            ConversionOneGroupBox.TabStop = false;
+            ConversionOneGroupBox.Text = "Umrechnung #1";
+            // 
+            // ConversionOneNumericUpDown
+            // 
+            ConversionOneNumericUpDown.Location = new Point(176, 32);
+            ConversionOneNumericUpDown.Name = "ConversionOneNumericUpDown";
+            ConversionOneNumericUpDown.Size = new Size(174, 23);
+            ConversionOneNumericUpDown.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -766,6 +869,13 @@
             IPAddressGroupBox.PerformLayout();
             IPAddressInputGroupBox.ResumeLayout(false);
             IPAddressInputGroupBox.PerformLayout();
+            UnitConversionTabPage.ResumeLayout(false);
+            ConversionTwoGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ConversionTwoNumericUpDown).EndInit();
+            ConversionThreeGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ConversionThreeNumericUpDown).EndInit();
+            ConversionOneGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ConversionOneNumericUpDown).EndInit();
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AboutPictureBox).EndInit();
@@ -825,5 +935,14 @@
         private LinkLabel AboutGHRepoLinkLabel;
         private Label AboutVersionLabel;
         private Label AboutCreatorLabel;
+        private GroupBox ConversionOneGroupBox;
+        private GroupBox ConversionThreeGroupBox;
+        private GroupBox ConversionTwoGroupBox;
+        private ComboBox ConversionThreeComboBox;
+        private ComboBox ConversionTwoComboBox;
+        private ComboBox ConversionOneComboBox;
+        private NumericUpDown ConversionTwoNumericUpDown;
+        private NumericUpDown ConversionThreeNumericUpDown;
+        private NumericUpDown ConversionOneNumericUpDown;
     }
 }
