@@ -716,7 +716,9 @@
             // 
             // ConversionTwoNumericUpDown
             // 
+            ConversionTwoNumericUpDown.DecimalPlaces = 3;
             ConversionTwoNumericUpDown.Location = new Point(176, 32);
+            ConversionTwoNumericUpDown.Maximum = new decimal(new int[] { 276447231, 23283, 0, 0 });
             ConversionTwoNumericUpDown.Name = "ConversionTwoNumericUpDown";
             ConversionTwoNumericUpDown.Size = new Size(174, 23);
             ConversionTwoNumericUpDown.TabIndex = 1;
@@ -734,10 +736,13 @@
             // 
             // ConversionThreeNumericUpDown
             // 
+            ConversionThreeNumericUpDown.DecimalPlaces = 3;
             ConversionThreeNumericUpDown.Location = new Point(176, 32);
+            ConversionThreeNumericUpDown.Maximum = new decimal(new int[] { 276447231, 23283, 0, 0 });
             ConversionThreeNumericUpDown.Name = "ConversionThreeNumericUpDown";
             ConversionThreeNumericUpDown.Size = new Size(174, 23);
             ConversionThreeNumericUpDown.TabIndex = 0;
+            ConversionThreeNumericUpDown.ValueChanged += ConversionThreeNumericUpDown_ValueChanged;
             // 
             // ConversionOneGroupBox
             // 
@@ -751,7 +756,9 @@
             // 
             // ConversionOneNumericUpDown
             // 
+            ConversionOneNumericUpDown.DecimalPlaces = 3;
             ConversionOneNumericUpDown.Location = new Point(176, 32);
+            ConversionOneNumericUpDown.Maximum = new decimal(new int[] { 276447231, 23283, 0, 0 });
             ConversionOneNumericUpDown.Name = "ConversionOneNumericUpDown";
             ConversionOneNumericUpDown.Size = new Size(174, 23);
             ConversionOneNumericUpDown.TabIndex = 1;

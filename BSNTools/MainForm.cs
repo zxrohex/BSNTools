@@ -13,7 +13,7 @@ namespace BSNTools
     {
         int decimalNumber = 0;
 
-        int mainConversionUnitValue = 0;
+        Information mainConversionUnitValue;
 
         IPNetwork2 ipNetwork;
 
@@ -39,7 +39,7 @@ namespace BSNTools
             // build und revision sind vertauscht (da ich revision als build nummer nutze)
 
             VersionLabel.Text = $"Version {version.Major}.{version.Minor}.{version.Build} Build {version.Revision}";
-
+   
             AboutVersionLabel.Text = $"Version {version.Major}.{version.Minor}.{version.Build} Build {version.Revision}";
         }
 
@@ -281,32 +281,81 @@ namespace BSNTools
 
         private void DoConversions()
         {
-         
+            ConversionOneNumericUpDown.Value = (decimal)mainConversionUnitValue.As(unit1);
+            ConversionTwoNumericUpDown.Value = (decimal)mainConversionUnitValue.As(unit2);
+            ConversionThreeNumericUpDown.Value = (decimal)mainConversionUnitValue.As(unit3);
         }
 
         private void ConversionOneComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             unit1 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionOneComboBox.SelectedItem.ToString());
+
+            if (unit1 == InformationUnit.Bit)
+            {
+                ConversionOneNumericUpDown.DecimalPlaces = 0;
+
+            }
+            else
+            {
+                ConversionOneNumericUpDown.DecimalPlaces = 4;
+            }
+
+            DoConversions();
         }
 
         private void ConversionTwoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             unit2 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionTwoComboBox.SelectedItem.ToString());
+
+            if (unit2 == InformationUnit.Bit)
+            {
+                ConversionTwoNumericUpDown.DecimalPlaces = 0;
+
+            }
+            else
+            {
+                ConversionTwoNumericUpDown.DecimalPlaces = 4;
+            }
+
+            DoConversions();
         }
 
         private void ConversionThreeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             unit3 = (InformationUnit)Enum.Parse(typeof(InformationUnit), ConversionThreeComboBox.SelectedItem.ToString());
+
+            if (unit3 == InformationUnit.Bit)
+            {
+                ConversionThreeNumericUpDown.DecimalPlaces = 0;
+
+            }
+            else
+            {
+                ConversionThreeNumericUpDown.DecimalPlaces = 4;
+            }
+
+            DoConversions();
         }
 
         private void ConversionOneNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            
+            mainConversionUnitValue = Information.From((double)ConversionOneNumericUpDown.Value, unit1);
+
+            DoConversions();
         }
 
         private void ConversionTwoNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            mainConversionUnitValue = (int)ConversionOneNumericUpDown.Value;
+            mainConversionUnitValue = Information.From((double)ConversionTwoNumericUpDown.Value, unit2);
+
+            DoConversions();
+        }
+
+        private void ConversionThreeNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            mainConversionUnitValue = Information.From((double)ConversionThreeNumericUpDown.Value, unit3);
+
+            DoConversions();
         }
     }
 }
