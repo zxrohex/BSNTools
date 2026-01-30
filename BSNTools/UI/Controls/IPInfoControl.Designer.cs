@@ -388,6 +388,7 @@
             Controls.Add(IPCalculationInfosTableLayoutPanel);
             Name = "IPInfoControl";
             Size = new Size(448, 328);
+            Load += IPInfoControl_Load;
             IPCalculationInfosTableLayoutPanel.ResumeLayout(false);
             IPCalculationInfosTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)IPTotalsTextBoxExt).EndInit();

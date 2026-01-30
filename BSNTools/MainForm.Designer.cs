@@ -32,38 +32,40 @@
             HeaderPanel = new Panel();
             CreditsLabel = new Label();
             VersionLabel = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            pictureBox1 = new PictureBox();
+            AppSubtitleLabel = new Label();
+            AppTitleLabel = new Label();
+            AppLogoPictureBox = new PictureBox();
             BorderLabel = new Label();
             MainTabControl = new TabControl();
             StartTabPage = new TabPage();
-            NumericSystemConversionsTabPage = new TabPage();
+            ConversionsAndCalculationsTabPage = new TabPage();
+            ConversionCalculationToolContainerPanel = new Panel();
+            ConversionCalculationToolsMenu = new Syncfusion.Windows.Forms.Tools.GroupView();
             IPv4NetworkTabPage = new TabPage();
             IPInputConfigGroupBox = new GroupBox();
             IPInputConfigTableLayoutPanel = new TableLayoutPanel();
-            IPCalculationToolsSplitContainer = new SplitContainer();
-            UnitConversionTabPage = new TabPage();
-            AboutTabPage = new TabPage();
-            DebugTabPage = new TabPage();
-            LogRichTextBox = new RichTextBox();
             IPMainInputsPanel = new Panel();
-            IPAddressInputTextBox = new TextBox();
             IPSubnetCIDRInputTextBox = new TextBox();
+            IPAddressInputTextBox = new TextBox();
             IPInputsCalcStatsLabel = new Label();
             IPCalcActionsPanel = new Panel();
             IPCalculateButton = new Button();
+            IPCalculationToolsSplitContainer = new SplitContainer();
+            AboutTabPage = new TabPage();
+            DebugTabPage = new TabPage();
+            LogRichTextBox = new RichTextBox();
             HeaderPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)AppLogoPictureBox).BeginInit();
             MainTabControl.SuspendLayout();
+            ConversionsAndCalculationsTabPage.SuspendLayout();
             IPv4NetworkTabPage.SuspendLayout();
             IPInputConfigGroupBox.SuspendLayout();
             IPInputConfigTableLayoutPanel.SuspendLayout();
+            IPMainInputsPanel.SuspendLayout();
+            IPCalcActionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IPCalculationToolsSplitContainer).BeginInit();
             IPCalculationToolsSplitContainer.SuspendLayout();
             DebugTabPage.SuspendLayout();
-            IPMainInputsPanel.SuspendLayout();
-            IPCalcActionsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // HeaderPanel
@@ -71,9 +73,9 @@
             HeaderPanel.BackColor = Color.White;
             HeaderPanel.Controls.Add(CreditsLabel);
             HeaderPanel.Controls.Add(VersionLabel);
-            HeaderPanel.Controls.Add(label2);
-            HeaderPanel.Controls.Add(label1);
-            HeaderPanel.Controls.Add(pictureBox1);
+            HeaderPanel.Controls.Add(AppSubtitleLabel);
+            HeaderPanel.Controls.Add(AppTitleLabel);
+            HeaderPanel.Controls.Add(AppLogoPictureBox);
             HeaderPanel.Dock = DockStyle.Top;
             HeaderPanel.Location = new Point(0, 0);
             HeaderPanel.Margin = new Padding(2);
@@ -102,37 +104,37 @@
             VersionLabel.Text = "Version %Version%";
             VersionLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label2
+            // AppSubtitleLabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(64, 26);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(159, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Tools für den BSN-Unterricht";
+            AppSubtitleLabel.AutoSize = true;
+            AppSubtitleLabel.Location = new Point(64, 26);
+            AppSubtitleLabel.Margin = new Padding(2, 0, 2, 0);
+            AppSubtitleLabel.Name = "AppSubtitleLabel";
+            AppSubtitleLabel.Size = new Size(159, 15);
+            AppSubtitleLabel.TabIndex = 2;
+            AppSubtitleLabel.Text = "Tools für den BSN-Unterricht";
             // 
-            // label1
+            // AppTitleLabel
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(64, 11);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(62, 15);
-            label1.TabIndex = 1;
-            label1.Text = "BSN Tools";
+            AppTitleLabel.AutoSize = true;
+            AppTitleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            AppTitleLabel.Location = new Point(64, 11);
+            AppTitleLabel.Margin = new Padding(2, 0, 2, 0);
+            AppTitleLabel.Name = "AppTitleLabel";
+            AppTitleLabel.Size = new Size(62, 15);
+            AppTitleLabel.TabIndex = 1;
+            AppTitleLabel.Text = "BSN Tools";
             // 
-            // pictureBox1
+            // AppLogoPictureBox
             // 
-            pictureBox1.Image = Properties.Resources.BSNToolsLogo;
-            pictureBox1.Location = new Point(12, 9);
-            pictureBox1.Margin = new Padding(2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(47, 38);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            AppLogoPictureBox.Image = Properties.Resources.BSNToolsLogo;
+            AppLogoPictureBox.Location = new Point(12, 9);
+            AppLogoPictureBox.Margin = new Padding(2);
+            AppLogoPictureBox.Name = "AppLogoPictureBox";
+            AppLogoPictureBox.Size = new Size(47, 38);
+            AppLogoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            AppLogoPictureBox.TabIndex = 0;
+            AppLogoPictureBox.TabStop = false;
             // 
             // BorderLabel
             // 
@@ -148,9 +150,8 @@
             // 
             MainTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             MainTabControl.Controls.Add(StartTabPage);
-            MainTabControl.Controls.Add(NumericSystemConversionsTabPage);
+            MainTabControl.Controls.Add(ConversionsAndCalculationsTabPage);
             MainTabControl.Controls.Add(IPv4NetworkTabPage);
-            MainTabControl.Controls.Add(UnitConversionTabPage);
             MainTabControl.Controls.Add(AboutTabPage);
             MainTabControl.Controls.Add(DebugTabPage);
             MainTabControl.Location = new Point(12, 62);
@@ -170,16 +171,41 @@
             StartTabPage.Text = "Start";
             StartTabPage.UseVisualStyleBackColor = true;
             // 
-            // NumericSystemConversionsTabPage
+            // ConversionsAndCalculationsTabPage
             // 
-            NumericSystemConversionsTabPage.Location = new Point(4, 24);
-            NumericSystemConversionsTabPage.Margin = new Padding(2);
-            NumericSystemConversionsTabPage.Name = "NumericSystemConversionsTabPage";
-            NumericSystemConversionsTabPage.Padding = new Padding(2);
-            NumericSystemConversionsTabPage.Size = new Size(689, 432);
-            NumericSystemConversionsTabPage.TabIndex = 0;
-            NumericSystemConversionsTabPage.Text = "Umrechnung";
-            NumericSystemConversionsTabPage.UseVisualStyleBackColor = true;
+            ConversionsAndCalculationsTabPage.Controls.Add(ConversionCalculationToolContainerPanel);
+            ConversionsAndCalculationsTabPage.Controls.Add(ConversionCalculationToolsMenu);
+            ConversionsAndCalculationsTabPage.Location = new Point(4, 24);
+            ConversionsAndCalculationsTabPage.Margin = new Padding(2);
+            ConversionsAndCalculationsTabPage.Name = "ConversionsAndCalculationsTabPage";
+            ConversionsAndCalculationsTabPage.Padding = new Padding(2);
+            ConversionsAndCalculationsTabPage.Size = new Size(689, 432);
+            ConversionsAndCalculationsTabPage.TabIndex = 0;
+            ConversionsAndCalculationsTabPage.Text = "Umrechnung/Konversion";
+            ConversionsAndCalculationsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ConversionCalculationToolContainerPanel
+            // 
+            ConversionCalculationToolContainerPanel.Dock = DockStyle.Fill;
+            ConversionCalculationToolContainerPanel.Location = new Point(165, 2);
+            ConversionCalculationToolContainerPanel.Name = "ConversionCalculationToolContainerPanel";
+            ConversionCalculationToolContainerPanel.Size = new Size(522, 428);
+            ConversionCalculationToolContainerPanel.TabIndex = 1;
+            // 
+            // ConversionCalculationToolsMenu
+            // 
+            ConversionCalculationToolsMenu.BackColor = SystemColors.Control;
+            ConversionCalculationToolsMenu.ButtonView = true;
+            ConversionCalculationToolsMenu.Dock = DockStyle.Left;
+            ConversionCalculationToolsMenu.GroupViewItems.AddRange(new Syncfusion.Windows.Forms.Tools.GroupViewItem[] { new Syncfusion.Windows.Forms.Tools.GroupViewItem("Umrechnen", -1, true, null, "GroupViewItem0"), new Syncfusion.Windows.Forms.Tools.GroupViewItem("Konvertieren", -1, true, null, "GroupViewItem1") });
+            ConversionCalculationToolsMenu.Location = new Point(2, 2);
+            ConversionCalculationToolsMenu.Name = "ConversionCalculationToolsMenu";
+            ConversionCalculationToolsMenu.SelectedItem = 0;
+            ConversionCalculationToolsMenu.Size = new Size(163, 428);
+            ConversionCalculationToolsMenu.TabIndex = 0;
+            ConversionCalculationToolsMenu.Text = "groupView1";
+            ConversionCalculationToolsMenu.ThemeName = "Default";
+            ConversionCalculationToolsMenu.GroupViewItemSelected += ConversionCalculationToolsMenu_GroupViewItemSelected;
             // 
             // IPv4NetworkTabPage
             // 
@@ -221,6 +247,66 @@
             IPInputConfigTableLayoutPanel.Size = new Size(642, 41);
             IPInputConfigTableLayoutPanel.TabIndex = 0;
             // 
+            // IPMainInputsPanel
+            // 
+            IPMainInputsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            IPMainInputsPanel.Controls.Add(IPSubnetCIDRInputTextBox);
+            IPMainInputsPanel.Controls.Add(IPAddressInputTextBox);
+            IPMainInputsPanel.Location = new Point(3, 3);
+            IPMainInputsPanel.Name = "IPMainInputsPanel";
+            IPMainInputsPanel.Size = new Size(283, 35);
+            IPMainInputsPanel.TabIndex = 0;
+            // 
+            // IPSubnetCIDRInputTextBox
+            // 
+            IPSubnetCIDRInputTextBox.Location = new Point(198, 6);
+            IPSubnetCIDRInputTextBox.Name = "IPSubnetCIDRInputTextBox";
+            IPSubnetCIDRInputTextBox.PlaceholderText = "Subnet-CIDR";
+            IPSubnetCIDRInputTextBox.Size = new Size(78, 23);
+            IPSubnetCIDRInputTextBox.TabIndex = 1;
+            IPSubnetCIDRInputTextBox.TextChanged += IPInputTextBoxes_TextChanged;
+            // 
+            // IPAddressInputTextBox
+            // 
+            IPAddressInputTextBox.Location = new Point(7, 6);
+            IPAddressInputTextBox.Name = "IPAddressInputTextBox";
+            IPAddressInputTextBox.PlaceholderText = "IP-Adresse/CIDR";
+            IPAddressInputTextBox.Size = new Size(187, 23);
+            IPAddressInputTextBox.TabIndex = 0;
+            IPAddressInputTextBox.TextChanged += IPInputTextBoxes_TextChanged;
+            // 
+            // IPInputsCalcStatsLabel
+            // 
+            IPInputsCalcStatsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            IPInputsCalcStatsLabel.BorderStyle = BorderStyle.Fixed3D;
+            IPInputsCalcStatsLabel.Location = new Point(298, 9);
+            IPInputsCalcStatsLabel.Margin = new Padding(9);
+            IPInputsCalcStatsLabel.Name = "IPInputsCalcStatsLabel";
+            IPInputsCalcStatsLabel.Size = new Size(140, 23);
+            IPInputsCalcStatsLabel.TabIndex = 1;
+            IPInputsCalcStatsLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // IPCalcActionsPanel
+            // 
+            IPCalcActionsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            IPCalcActionsPanel.Controls.Add(IPCalculateButton);
+            IPCalcActionsPanel.Location = new Point(453, 6);
+            IPCalcActionsPanel.Margin = new Padding(6);
+            IPCalcActionsPanel.Name = "IPCalcActionsPanel";
+            IPCalcActionsPanel.Size = new Size(183, 29);
+            IPCalcActionsPanel.TabIndex = 2;
+            // 
+            // IPCalculateButton
+            // 
+            IPCalculateButton.Dock = DockStyle.Fill;
+            IPCalculateButton.Location = new Point(0, 0);
+            IPCalculateButton.Name = "IPCalculateButton";
+            IPCalculateButton.Size = new Size(183, 29);
+            IPCalculateButton.TabIndex = 0;
+            IPCalculateButton.Text = "Berechnen";
+            IPCalculateButton.UseVisualStyleBackColor = true;
+            IPCalculateButton.Click += IPCalculateButton_Click;
+            // 
             // IPCalculationToolsSplitContainer
             // 
             IPCalculationToolsSplitContainer.BorderStyle = BorderStyle.Fixed3D;
@@ -229,16 +315,6 @@
             IPCalculationToolsSplitContainer.Size = new Size(648, 332);
             IPCalculationToolsSplitContainer.SplitterDistance = 452;
             IPCalculationToolsSplitContainer.TabIndex = 1;
-            // 
-            // UnitConversionTabPage
-            // 
-            UnitConversionTabPage.Location = new Point(4, 24);
-            UnitConversionTabPage.Name = "UnitConversionTabPage";
-            UnitConversionTabPage.Padding = new Padding(3);
-            UnitConversionTabPage.Size = new Size(689, 432);
-            UnitConversionTabPage.TabIndex = 3;
-            UnitConversionTabPage.Text = "Konversion";
-            UnitConversionTabPage.UseVisualStyleBackColor = true;
             // 
             // AboutTabPage
             // 
@@ -271,61 +347,6 @@
             LogRichTextBox.TabIndex = 0;
             LogRichTextBox.Text = "";
             // 
-            // IPMainInputsPanel
-            // 
-            IPMainInputsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            IPMainInputsPanel.Controls.Add(IPSubnetCIDRInputTextBox);
-            IPMainInputsPanel.Controls.Add(IPAddressInputTextBox);
-            IPMainInputsPanel.Location = new Point(3, 3);
-            IPMainInputsPanel.Name = "IPMainInputsPanel";
-            IPMainInputsPanel.Size = new Size(283, 35);
-            IPMainInputsPanel.TabIndex = 0;
-            // 
-            // IPAddressInputTextBox
-            // 
-            IPAddressInputTextBox.Location = new Point(7, 6);
-            IPAddressInputTextBox.Name = "IPAddressInputTextBox";
-            IPAddressInputTextBox.Size = new Size(187, 23);
-            IPAddressInputTextBox.TabIndex = 0;
-            // 
-            // IPSubnetCIDRInputTextBox
-            // 
-            IPSubnetCIDRInputTextBox.Location = new Point(198, 6);
-            IPSubnetCIDRInputTextBox.Name = "IPSubnetCIDRInputTextBox";
-            IPSubnetCIDRInputTextBox.Size = new Size(78, 23);
-            IPSubnetCIDRInputTextBox.TabIndex = 1;
-            // 
-            // IPInputsCalcStatsLabel
-            // 
-            IPInputsCalcStatsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            IPInputsCalcStatsLabel.BorderStyle = BorderStyle.Fixed3D;
-            IPInputsCalcStatsLabel.Location = new Point(298, 9);
-            IPInputsCalcStatsLabel.Margin = new Padding(9);
-            IPInputsCalcStatsLabel.Name = "IPInputsCalcStatsLabel";
-            IPInputsCalcStatsLabel.Size = new Size(140, 23);
-            IPInputsCalcStatsLabel.TabIndex = 1;
-            IPInputsCalcStatsLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // IPCalcActionsPanel
-            // 
-            IPCalcActionsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            IPCalcActionsPanel.Controls.Add(IPCalculateButton);
-            IPCalcActionsPanel.Location = new Point(453, 6);
-            IPCalcActionsPanel.Margin = new Padding(6);
-            IPCalcActionsPanel.Name = "IPCalcActionsPanel";
-            IPCalcActionsPanel.Size = new Size(183, 29);
-            IPCalcActionsPanel.TabIndex = 2;
-            // 
-            // IPCalculateButton
-            // 
-            IPCalculateButton.Dock = DockStyle.Fill;
-            IPCalculateButton.Location = new Point(0, 0);
-            IPCalculateButton.Name = "IPCalculateButton";
-            IPCalculateButton.Size = new Size(183, 29);
-            IPCalculateButton.TabIndex = 0;
-            IPCalculateButton.Text = "Berechnen";
-            IPCalculateButton.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -336,22 +357,25 @@
             Controls.Add(HeaderPanel);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(2);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "BSN Tools";
             HeaderPanel.ResumeLayout(false);
             HeaderPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)AppLogoPictureBox).EndInit();
             MainTabControl.ResumeLayout(false);
+            ConversionsAndCalculationsTabPage.ResumeLayout(false);
             IPv4NetworkTabPage.ResumeLayout(false);
             IPInputConfigGroupBox.ResumeLayout(false);
             IPInputConfigTableLayoutPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)IPCalculationToolsSplitContainer).EndInit();
-            IPCalculationToolsSplitContainer.ResumeLayout(false);
-            DebugTabPage.ResumeLayout(false);
             IPMainInputsPanel.ResumeLayout(false);
             IPMainInputsPanel.PerformLayout();
             IPCalcActionsPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)IPCalculationToolsSplitContainer).EndInit();
+            IPCalculationToolsSplitContainer.ResumeLayout(false);
+            DebugTabPage.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -359,16 +383,15 @@
 
         private Panel HeaderPanel;
         private Label BorderLabel;
-        private PictureBox pictureBox1;
+        private PictureBox AppLogoPictureBox;
         private TabControl MainTabControl;
-        private TabPage NumericSystemConversionsTabPage;
+        private TabPage ConversionsAndCalculationsTabPage;
         private TabPage IPv4NetworkTabPage;
-        private Label label1;
-        private Label label2;
+        private Label AppTitleLabel;
+        private Label AppSubtitleLabel;
         private Label VersionLabel;
         private Label CreditsLabel;
         private TabPage StartTabPage;
-        private TabPage UnitConversionTabPage;
         private TabPage AboutTabPage;
         private TabPage DebugTabPage;
         private RichTextBox LogRichTextBox;
@@ -381,5 +404,7 @@
         private Label IPInputsCalcStatsLabel;
         private Panel IPCalcActionsPanel;
         private Button IPCalculateButton;
+        private Syncfusion.Windows.Forms.Tools.GroupView ConversionCalculationToolsMenu;
+        private Panel ConversionCalculationToolContainerPanel;
     }
 }

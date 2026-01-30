@@ -7,14 +7,15 @@
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<AssemblyVersion>0.0.0.75</AssemblyVersion>
-		<FileVersion>0.0.0.75</FileVersion>
+		<AssemblyVersion>0.0.0.98</AssemblyVersion>
+		<FileVersion>0.0.0.98</FileVersion>
 		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="IPNetwork2" Version="3.4.851" />
+		<PackageReference Include="Syncfusion.Core.WinForms" Version="32.1.25" />
 		<PackageReference Include="Syncfusion.Edit.Windows" Version="32.1.25" />
 		<PackageReference Include="UnitsNet" Version="6.0.0-pre019" />
 		<PackageReference Include="UnitsNet.NumberExtensions.CS14" Version="6.0.0-pre017" />
