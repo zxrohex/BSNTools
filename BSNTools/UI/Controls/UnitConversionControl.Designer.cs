@@ -36,6 +36,13 @@
             FirstUnitComboBoxAdv = new Syncfusion.Windows.Forms.Tools.ComboBoxAdv();
             SecondUnitNumericUpDownExt = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
             FirstUnitNumericUpDownExt = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
+            groupBox1 = new GroupBox();
+            TransferCalculationResultLabel = new Label();
+            TransferSecondUnitComboBoxAdv = new Syncfusion.Windows.Forms.Tools.ComboBoxAdv();
+            TransferSecondUnitNumericUpDownExt = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
+            TransferAreLabel = new Label();
+            TransferFirstUnitComboBoxAdv = new Syncfusion.Windows.Forms.Tools.ComboBoxAdv();
+            TransferFirstUnitNumericUpDownExt = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
             CommonUnitsConverterGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)UnitConversionMathExplainerTextBoxExt).BeginInit();
             UnitConversionInputsPanel.SuspendLayout();
@@ -43,6 +50,11 @@
             ((System.ComponentModel.ISupportInitialize)FirstUnitComboBoxAdv).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SecondUnitNumericUpDownExt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)FirstUnitNumericUpDownExt).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)TransferSecondUnitComboBoxAdv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TransferSecondUnitNumericUpDownExt).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TransferFirstUnitComboBoxAdv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TransferFirstUnitNumericUpDownExt).BeginInit();
             SuspendLayout();
             // 
             // CommonUnitsConverterGroupBox
@@ -101,7 +113,7 @@
             // 
             AreLabel.Anchor = AnchorStyles.None;
             AreLabel.AutoSize = true;
-            AreLabel.Location = new Point(236, 13);
+            AreLabel.Location = new Point(237, 12);
             AreLabel.Name = "AreLabel";
             AreLabel.Size = new Size(29, 15);
             AreLabel.TabIndex = 4;
@@ -144,9 +156,93 @@
             FirstUnitNumericUpDownExt.TabIndex = 0;
             FirstUnitNumericUpDownExt.ValueChanged += UnitNumericUpDownExts_ValueChanged;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(TransferCalculationResultLabel);
+            groupBox1.Controls.Add(TransferSecondUnitComboBoxAdv);
+            groupBox1.Controls.Add(TransferSecondUnitNumericUpDownExt);
+            groupBox1.Controls.Add(TransferAreLabel);
+            groupBox1.Controls.Add(TransferFirstUnitComboBoxAdv);
+            groupBox1.Controls.Add(TransferFirstUnitNumericUpDownExt);
+            groupBox1.Location = new Point(8, 150);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(510, 118);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Zeit-Berechner";
+            // 
+            // TransferCalculationResultLabel
+            // 
+            TransferCalculationResultLabel.BorderStyle = BorderStyle.Fixed3D;
+            TransferCalculationResultLabel.Location = new Point(17, 62);
+            TransferCalculationResultLabel.Name = "TransferCalculationResultLabel";
+            TransferCalculationResultLabel.Size = new Size(476, 42);
+            TransferCalculationResultLabel.TabIndex = 6;
+            TransferCalculationResultLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // TransferSecondUnitComboBoxAdv
+            // 
+            TransferSecondUnitComboBoxAdv.AllowNewText = false;
+            TransferSecondUnitComboBoxAdv.Anchor = AnchorStyles.None;
+            TransferSecondUnitComboBoxAdv.DropDownStyle = ComboBoxStyle.DropDownList;
+            TransferSecondUnitComboBoxAdv.Height = 23;
+            TransferSecondUnitComboBoxAdv.Location = new Point(397, 26);
+            TransferSecondUnitComboBoxAdv.Name = "TransferSecondUnitComboBoxAdv";
+            TransferSecondUnitComboBoxAdv.Size = new Size(96, 23);
+            TransferSecondUnitComboBoxAdv.TabIndex = 5;
+            TransferSecondUnitComboBoxAdv.TextBoxHeight = 23;
+            TransferSecondUnitComboBoxAdv.SelectedIndexChanged += TransferUnitComboBoxAdvs_SelectedIndexChanged;
+            // 
+            // TransferSecondUnitNumericUpDownExt
+            // 
+            TransferSecondUnitNumericUpDownExt.Anchor = AnchorStyles.None;
+            TransferSecondUnitNumericUpDownExt.BeforeTouchSize = new Size(117, 23);
+            TransferSecondUnitNumericUpDownExt.Location = new Point(274, 26);
+            TransferSecondUnitNumericUpDownExt.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
+            TransferSecondUnitNumericUpDownExt.MaxLength = 999999999;
+            TransferSecondUnitNumericUpDownExt.Name = "TransferSecondUnitNumericUpDownExt";
+            TransferSecondUnitNumericUpDownExt.Size = new Size(117, 23);
+            TransferSecondUnitNumericUpDownExt.TabIndex = 4;
+            TransferSecondUnitNumericUpDownExt.ValueChanged += TransferUnitNumericUpDownExts_ValueChanged;
+            // 
+            // TransferAreLabel
+            // 
+            TransferAreLabel.AutoSize = true;
+            TransferAreLabel.Location = new Point(243, 29);
+            TransferAreLabel.Name = "TransferAreLabel";
+            TransferAreLabel.Size = new Size(23, 15);
+            TransferAreLabel.TabIndex = 3;
+            TransferAreLabel.Text = "bei";
+            // 
+            // TransferFirstUnitComboBoxAdv
+            // 
+            TransferFirstUnitComboBoxAdv.AllowNewText = false;
+            TransferFirstUnitComboBoxAdv.Anchor = AnchorStyles.None;
+            TransferFirstUnitComboBoxAdv.DropDownStyle = ComboBoxStyle.DropDownList;
+            TransferFirstUnitComboBoxAdv.Height = 23;
+            TransferFirstUnitComboBoxAdv.Location = new Point(140, 26);
+            TransferFirstUnitComboBoxAdv.Name = "TransferFirstUnitComboBoxAdv";
+            TransferFirstUnitComboBoxAdv.Size = new Size(96, 23);
+            TransferFirstUnitComboBoxAdv.TabIndex = 2;
+            TransferFirstUnitComboBoxAdv.TextBoxHeight = 23;
+            TransferFirstUnitComboBoxAdv.SelectedIndexChanged += TransferUnitComboBoxAdvs_SelectedIndexChanged;
+            // 
+            // TransferFirstUnitNumericUpDownExt
+            // 
+            TransferFirstUnitNumericUpDownExt.Anchor = AnchorStyles.None;
+            TransferFirstUnitNumericUpDownExt.BeforeTouchSize = new Size(117, 23);
+            TransferFirstUnitNumericUpDownExt.Location = new Point(17, 26);
+            TransferFirstUnitNumericUpDownExt.Maximum = new decimal(new int[] { 1874919423, 2328306, 0, 0 });
+            TransferFirstUnitNumericUpDownExt.MaxLength = 999999999;
+            TransferFirstUnitNumericUpDownExt.Name = "TransferFirstUnitNumericUpDownExt";
+            TransferFirstUnitNumericUpDownExt.Size = new Size(117, 23);
+            TransferFirstUnitNumericUpDownExt.TabIndex = 1;
+            TransferFirstUnitNumericUpDownExt.ValueChanged += TransferUnitNumericUpDownExts_ValueChanged;
+            // 
             // UnitConversionControl
             // 
             AutoScaleMode = AutoScaleMode.None;
+            Controls.Add(groupBox1);
             Controls.Add(CommonUnitsConverterGroupBox);
             Name = "UnitConversionControl";
             Padding = new Padding(8);
@@ -160,6 +256,12 @@
             ((System.ComponentModel.ISupportInitialize)FirstUnitComboBoxAdv).EndInit();
             ((System.ComponentModel.ISupportInitialize)SecondUnitNumericUpDownExt).EndInit();
             ((System.ComponentModel.ISupportInitialize)FirstUnitNumericUpDownExt).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)TransferSecondUnitComboBoxAdv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TransferSecondUnitNumericUpDownExt).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TransferFirstUnitComboBoxAdv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TransferFirstUnitNumericUpDownExt).EndInit();
             ResumeLayout(false);
         }
 
@@ -173,5 +275,12 @@
         private Syncfusion.Windows.Forms.Tools.NumericUpDownExt FirstUnitNumericUpDownExt;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt UnitConversionMathExplainerTextBoxExt;
         private Panel UnitConversionInputsPanel;
+        private GroupBox groupBox1;
+        private Syncfusion.Windows.Forms.Tools.ComboBoxAdv TransferSecondUnitComboBoxAdv;
+        private Syncfusion.Windows.Forms.Tools.NumericUpDownExt TransferSecondUnitNumericUpDownExt;
+        private Label TransferAreLabel;
+        private Syncfusion.Windows.Forms.Tools.ComboBoxAdv TransferFirstUnitComboBoxAdv;
+        private Syncfusion.Windows.Forms.Tools.NumericUpDownExt TransferFirstUnitNumericUpDownExt;
+        private Label TransferCalculationResultLabel;
     }
 }
