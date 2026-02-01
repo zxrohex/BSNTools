@@ -30,39 +30,39 @@ namespace BSNTools.UI.Controls
 
         InformationUnit secondUnit = InformationUnit.Bit;
 
-        InformationUnit transferFirstUnit = InformationUnit.Megabyte;
+        InformationUnit transferFirstUnit = InformationUnit.Bit;
 
-        BitRateUnit transferSecondUnit = BitRateUnit.MegabitPerSecond;
+        BitRateUnit transferSecondUnit = BitRateUnit.BitPerSecond;
 
 
         Information unitInfo => Information.FromBits(unitValue);
 
-        Information transferFirstUnitInfo => Information.From(transferFirstUnitValue, transferFirstUnit);
+        Information transferFirstUnitInfo => Information.FromBits(transferFirstUnitValue);
 
-        BitRate transferSecondUnitInfo => BitRate.From(transferSecondUnitValue, transferSecondUnit);
+        BitRate transferSecondUnitInfo => BitRate.FromBitsPerSecond(transferSecondUnitValue);
 
         public UnitConversionControl()
         {
             InitializeComponent();
 
 
-            FirstUnitComboBoxAdv.Items.AddRange(Enum.GetValues<InformationUnit>().Cast<object>().ToArray());
+            FirstUnitComboBoxAdv.Items.AddRange(Enum.GetValues<InformationUnit>().Select(i => Information.GetAbbreviation(i)).Cast<object>().ToArray());
 
-            SecondUnitComboBoxAdv.Items.AddRange(Enum.GetValues<InformationUnit>().Cast<object>().ToArray());
+            SecondUnitComboBoxAdv.Items.AddRange(Enum.GetValues<InformationUnit>().Select(i => Information.GetAbbreviation(i)).Cast<object>().ToArray());
 
-            TransferFirstUnitComboBoxAdv.Items.AddRange(Enum.GetValues<InformationUnit>().Cast<object>().ToArray());
+            TransferFirstUnitComboBoxAdv.Items.AddRange(Enum.GetValues<InformationUnit>().Select(i => Information.GetAbbreviation(i)).Cast<object>().ToArray());
 
-            TransferSecondUnitComboBoxAdv.Items.AddRange(Enum.GetValues<BitRateUnit>().Cast<object>().ToArray());
+            TransferSecondUnitComboBoxAdv.Items.AddRange(Enum.GetValues<BitRateUnit>().Select(i => BitRate.GetAbbreviation(i)).Cast<object>().ToArray());
 
 
 
             FirstUnitComboBoxAdv.SelectedIndex = 1;
 
             SecondUnitComboBoxAdv.SelectedIndex = 0;
-            
-            TransferFirstUnitComboBoxAdv.SelectedIndex = 18;
 
-            TransferSecondUnitComboBoxAdv.SelectedIndex = 17;
+            TransferFirstUnitComboBoxAdv.SelectedIndex = 1;
+
+            TransferSecondUnitComboBoxAdv.SelectedIndex = 0;
 
         }
 
@@ -84,6 +84,14 @@ namespace BSNTools.UI.Controls
             if (nud == TransferSecondUnitNumericUpDownExt) TransferSecondUnitNumericUpDownExt.Value = (decimal)transferSecondUnitInfo.As(transferSecondUnit);
 
             isUpdatingTransfer = false;
+        }
+
+        private void UpdateTransferTimeCalculation()
+        {
+            TimeSpan time = TimeSpan.FromSeconds(transferFirstUnitInfo.Bits / transferSecondUnitInfo.BitsPerSecond);
+
+            TransferCalculationResultLabel.Text = $"Dauer: {time:d\\.hh\\:mm\\:ss}";
+
         }
 
         private void UnitNumericUpDownExts_ValueChanged(object sender, EventArgs e)
@@ -145,7 +153,7 @@ namespace BSNTools.UI.Controls
                 if (nud.Name == "TransferFirstUnitNumericUpDownExt")
                 {
                     transferFirstUnitValue = Information.From((double)nud.Value, transferFirstUnit).Bits;
-                } 
+                }
                 else
                 {
                     transferSecondUnitValue = BitRate.From((double)nud.Value, transferSecondUnit).BitsPerSecond;
@@ -153,6 +161,7 @@ namespace BSNTools.UI.Controls
 
                 // 2. Update all other boxes
                 UpdateTransferInputFields(nud);
+                UpdateTransferTimeCalculation();
             }
             catch { /* Handle invalid input silently or show error */ }
         }
@@ -175,14 +184,14 @@ namespace BSNTools.UI.Controls
             else if (cb == TransferSecondUnitComboBoxAdv)
             {
                 transferSecondUnit = (BitRateUnit)cb.SelectedItem;
-
+           
                 if (transferSecondUnit == BitRateUnit.BitPerSecond) TransferSecondUnitNumericUpDownExt.DecimalPlaces = 0;
                 else TransferSecondUnitNumericUpDownExt.DecimalPlaces = 3;
 
                 UpdateTransferInputFields(TransferSecondUnitNumericUpDownExt);
             }
 
-               
+            UpdateTransferTimeCalculation();
         }
     }
 }

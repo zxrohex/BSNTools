@@ -36,7 +36,7 @@
             FirstUnitComboBoxAdv = new Syncfusion.Windows.Forms.Tools.ComboBoxAdv();
             SecondUnitNumericUpDownExt = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
             FirstUnitNumericUpDownExt = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
-            groupBox1 = new GroupBox();
+            TransferTimeCalculationGroupBox = new GroupBox();
             TransferCalculationResultLabel = new Label();
             TransferSecondUnitComboBoxAdv = new Syncfusion.Windows.Forms.Tools.ComboBoxAdv();
             TransferSecondUnitNumericUpDownExt = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
@@ -50,7 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)FirstUnitComboBoxAdv).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SecondUnitNumericUpDownExt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)FirstUnitNumericUpDownExt).BeginInit();
-            groupBox1.SuspendLayout();
+            TransferTimeCalculationGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)TransferSecondUnitComboBoxAdv).BeginInit();
             ((System.ComponentModel.ISupportInitialize)TransferSecondUnitNumericUpDownExt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)TransferFirstUnitComboBoxAdv).BeginInit();
@@ -156,20 +156,20 @@
             FirstUnitNumericUpDownExt.TabIndex = 0;
             FirstUnitNumericUpDownExt.ValueChanged += UnitNumericUpDownExts_ValueChanged;
             // 
-            // groupBox1
+            // TransferTimeCalculationGroupBox
             // 
-            groupBox1.Controls.Add(TransferCalculationResultLabel);
-            groupBox1.Controls.Add(TransferSecondUnitComboBoxAdv);
-            groupBox1.Controls.Add(TransferSecondUnitNumericUpDownExt);
-            groupBox1.Controls.Add(TransferAreLabel);
-            groupBox1.Controls.Add(TransferFirstUnitComboBoxAdv);
-            groupBox1.Controls.Add(TransferFirstUnitNumericUpDownExt);
-            groupBox1.Location = new Point(8, 150);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(510, 118);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Zeit-Berechner";
+            TransferTimeCalculationGroupBox.Controls.Add(TransferCalculationResultLabel);
+            TransferTimeCalculationGroupBox.Controls.Add(TransferSecondUnitComboBoxAdv);
+            TransferTimeCalculationGroupBox.Controls.Add(TransferSecondUnitNumericUpDownExt);
+            TransferTimeCalculationGroupBox.Controls.Add(TransferAreLabel);
+            TransferTimeCalculationGroupBox.Controls.Add(TransferFirstUnitComboBoxAdv);
+            TransferTimeCalculationGroupBox.Controls.Add(TransferFirstUnitNumericUpDownExt);
+            TransferTimeCalculationGroupBox.Location = new Point(8, 150);
+            TransferTimeCalculationGroupBox.Name = "TransferTimeCalculationGroupBox";
+            TransferTimeCalculationGroupBox.Size = new Size(510, 118);
+            TransferTimeCalculationGroupBox.TabIndex = 1;
+            TransferTimeCalculationGroupBox.TabStop = false;
+            TransferTimeCalculationGroupBox.Text = "Zeit-Berechner";
             // 
             // TransferCalculationResultLabel
             // 
@@ -242,7 +242,7 @@
             // UnitConversionControl
             // 
             AutoScaleMode = AutoScaleMode.None;
-            Controls.Add(groupBox1);
+            Controls.Add(TransferTimeCalculationGroupBox);
             Controls.Add(CommonUnitsConverterGroupBox);
             Name = "UnitConversionControl";
             Padding = new Padding(8);
@@ -256,8 +256,8 @@
             ((System.ComponentModel.ISupportInitialize)FirstUnitComboBoxAdv).EndInit();
             ((System.ComponentModel.ISupportInitialize)SecondUnitNumericUpDownExt).EndInit();
             ((System.ComponentModel.ISupportInitialize)FirstUnitNumericUpDownExt).EndInit();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            TransferTimeCalculationGroupBox.ResumeLayout(false);
+            TransferTimeCalculationGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)TransferSecondUnitComboBoxAdv).EndInit();
             ((System.ComponentModel.ISupportInitialize)TransferSecondUnitNumericUpDownExt).EndInit();
             ((System.ComponentModel.ISupportInitialize)TransferFirstUnitComboBoxAdv).EndInit();
@@ -275,7 +275,7 @@
         private Syncfusion.Windows.Forms.Tools.NumericUpDownExt FirstUnitNumericUpDownExt;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt UnitConversionMathExplainerTextBoxExt;
         private Panel UnitConversionInputsPanel;
-        private GroupBox groupBox1;
+        private GroupBox TransferTimeCalculationGroupBox;
         private Syncfusion.Windows.Forms.Tools.ComboBoxAdv TransferSecondUnitComboBoxAdv;
         private Syncfusion.Windows.Forms.Tools.NumericUpDownExt TransferSecondUnitNumericUpDownExt;
         private Label TransferAreLabel;
