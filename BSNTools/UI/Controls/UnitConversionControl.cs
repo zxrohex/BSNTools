@@ -116,7 +116,7 @@ namespace BSNTools.UI.Controls
         {
             TimeSpan time = TimeSpan.FromSeconds(transferFirstUnitInfo.Bits / transferSecondUnitInfo.BitsPerSecond);
 
-            TransferCalculationResultLabel.Text = $"Dauer: {time:%d} Tage, {time:%hh} Stunden, {time:%mm} Minuten, {time:%ss} Sekunden";
+            TransferCalculationResultLabel.Text = $"Dauer: {time:%d} Tage, {time:%hh} Stunden, {time:%mm} Minuten, {time:%s} Sekunden";
 
         }
 
