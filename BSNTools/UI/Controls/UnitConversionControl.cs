@@ -66,6 +66,32 @@ namespace BSNTools.UI.Controls
 
         }
 
+        private InformationUnit GetValueFromInformationUnitAbbreviation(string abbreviation)
+        {
+            foreach (InformationUnit unit in Enum.GetValues<InformationUnit>())
+            {
+                if (Information.GetAbbreviation(unit) == abbreviation)
+                {
+                    return unit;
+                }
+            }
+
+            return InformationUnit.Bit;
+        }
+
+        private BitRateUnit GetValueFromBitRateUnitAbbreviation(string abbreviation)
+        {
+            foreach (BitRateUnit unit in Enum.GetValues<BitRateUnit>())
+            {
+                if (BitRate.GetAbbreviation(unit) == abbreviation)
+                {
+                    return unit;
+                }
+            }
+
+            return BitRateUnit.BitPerSecond;
+        }
+
         private void UpdateInputFields(NumericUpDownExt nud)
         {
             isUpdating = true;
@@ -90,7 +116,7 @@ namespace BSNTools.UI.Controls
         {
             TimeSpan time = TimeSpan.FromSeconds(transferFirstUnitInfo.Bits / transferSecondUnitInfo.BitsPerSecond);
 
-            TransferCalculationResultLabel.Text = $"Dauer: {time:d\\.hh\\:mm\\:ss}";
+            TransferCalculationResultLabel.Text = $"Dauer: {time:%d} Tage, {time:%hh} Stunden, {time:%mm} Minuten, {time:%ss} Sekunden";
 
         }
 
@@ -124,7 +150,7 @@ namespace BSNTools.UI.Controls
 
             if (cb == FirstUnitComboBoxAdv)
             {
-                firstUnit = (InformationUnit)cb.SelectedItem;
+                firstUnit = GetValueFromInformationUnitAbbreviation(cb.SelectedItem.ToString());
 
                 if (firstUnit == InformationUnit.Bit) FirstUnitNumericUpDownExt.DecimalPlaces = 0;
                 else FirstUnitNumericUpDownExt.DecimalPlaces = 3;
@@ -132,7 +158,7 @@ namespace BSNTools.UI.Controls
             }
             else if (cb == SecondUnitComboBoxAdv)
             {
-                secondUnit = (InformationUnit)cb.SelectedItem;
+                secondUnit = GetValueFromInformationUnitAbbreviation(cb.SelectedItem.ToString());
 
                 if (secondUnit == InformationUnit.Bit) SecondUnitNumericUpDownExt.DecimalPlaces = 0;
                 else SecondUnitNumericUpDownExt.DecimalPlaces = 3;
@@ -174,7 +200,7 @@ namespace BSNTools.UI.Controls
 
             if (cb == TransferFirstUnitComboBoxAdv)
             {
-                transferFirstUnit = (InformationUnit)cb.SelectedItem;
+                transferFirstUnit = GetValueFromInformationUnitAbbreviation(cb.SelectedItem.ToString());
 
                 if (transferFirstUnit == InformationUnit.Bit) TransferFirstUnitNumericUpDownExt.DecimalPlaces = 0;
                 else TransferFirstUnitNumericUpDownExt.DecimalPlaces = 3;
@@ -183,7 +209,7 @@ namespace BSNTools.UI.Controls
             }
             else if (cb == TransferSecondUnitComboBoxAdv)
             {
-                transferSecondUnit = (BitRateUnit)cb.SelectedItem;
+                transferSecondUnit = GetValueFromBitRateUnitAbbreviation(cb.SelectedItem.ToString());
            
                 if (transferSecondUnit == BitRateUnit.BitPerSecond) TransferSecondUnitNumericUpDownExt.DecimalPlaces = 0;
                 else TransferSecondUnitNumericUpDownExt.DecimalPlaces = 3;

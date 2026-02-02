@@ -7,8 +7,8 @@
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<AssemblyVersion>0.0.0.104</AssemblyVersion>
-		<FileVersion>0.0.0.104</FileVersion>
+		<AssemblyVersion>0.0.0.106</AssemblyVersion>
+		<FileVersion>0.0.0.106</FileVersion>
 		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
 	</PropertyGroup>
