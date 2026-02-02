@@ -51,12 +51,17 @@
             IPCalcActionsPanel = new Panel();
             IPCalculateButton = new Button();
             IPCalculationToolsSplitContainer = new SplitContainer();
+            AdvancedViewButton = new Button();
+            WildcardMaskToggleButton = new Button();
+            BitFormToggleButton = new Button();
             AboutTabPage = new TabPage();
             DebugTabPage = new TabPage();
             LogRichTextBox = new RichTextBox();
+            label1 = new Label();
             HeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AppLogoPictureBox).BeginInit();
             MainTabControl.SuspendLayout();
+            StartTabPage.SuspendLayout();
             ConversionsAndCalculationsTabPage.SuspendLayout();
             IPv4NetworkTabPage.SuspendLayout();
             IPInputConfigGroupBox.SuspendLayout();
@@ -64,6 +69,7 @@
             IPMainInputsPanel.SuspendLayout();
             IPCalcActionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IPCalculationToolsSplitContainer).BeginInit();
+            IPCalculationToolsSplitContainer.Panel2.SuspendLayout();
             IPCalculationToolsSplitContainer.SuspendLayout();
             DebugTabPage.SuspendLayout();
             SuspendLayout();
@@ -97,9 +103,9 @@
             // 
             VersionLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             VersionLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            VersionLabel.Location = new Point(516, 11);
+            VersionLabel.Location = new Point(421, 11);
             VersionLabel.Name = "VersionLabel";
-            VersionLabel.Size = new Size(193, 15);
+            VersionLabel.Size = new Size(288, 15);
             VersionLabel.TabIndex = 3;
             VersionLabel.Text = "Version %Version%";
             VersionLabel.TextAlign = ContentAlignment.MiddleRight;
@@ -121,9 +127,9 @@
             AppTitleLabel.Location = new Point(64, 11);
             AppTitleLabel.Margin = new Padding(2, 0, 2, 0);
             AppTitleLabel.Name = "AppTitleLabel";
-            AppTitleLabel.Size = new Size(62, 15);
+            AppTitleLabel.Size = new Size(64, 15);
             AppTitleLabel.TabIndex = 1;
-            AppTitleLabel.Text = "BSN Tools";
+            AppTitleLabel.Text = "BSN-Tools";
             // 
             // AppLogoPictureBox
             // 
@@ -163,6 +169,7 @@
             // 
             // StartTabPage
             // 
+            StartTabPage.Controls.Add(label1);
             StartTabPage.Location = new Point(4, 24);
             StartTabPage.Name = "StartTabPage";
             StartTabPage.Padding = new Padding(3);
@@ -312,9 +319,52 @@
             IPCalculationToolsSplitContainer.BorderStyle = BorderStyle.Fixed3D;
             IPCalculationToolsSplitContainer.Location = new Point(20, 86);
             IPCalculationToolsSplitContainer.Name = "IPCalculationToolsSplitContainer";
+            // 
+            // IPCalculationToolsSplitContainer.Panel2
+            // 
+            IPCalculationToolsSplitContainer.Panel2.Controls.Add(AdvancedViewButton);
+            IPCalculationToolsSplitContainer.Panel2.Controls.Add(WildcardMaskToggleButton);
+            IPCalculationToolsSplitContainer.Panel2.Controls.Add(BitFormToggleButton);
+            IPCalculationToolsSplitContainer.Panel2.Enabled = false;
             IPCalculationToolsSplitContainer.Size = new Size(648, 332);
             IPCalculationToolsSplitContainer.SplitterDistance = 452;
             IPCalculationToolsSplitContainer.TabIndex = 1;
+            // 
+            // AdvancedViewButton
+            // 
+            AdvancedViewButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            AdvancedViewButton.Location = new Point(39, 219);
+            AdvancedViewButton.Name = "AdvancedViewButton";
+            AdvancedViewButton.Size = new Size(110, 98);
+            AdvancedViewButton.TabIndex = 2;
+            AdvancedViewButton.Text = "Erweitert";
+            AdvancedViewButton.UseVisualStyleBackColor = true;
+            AdvancedViewButton.Click += AdvancedViewButton_Click;
+            // 
+            // WildcardMaskToggleButton
+            // 
+            WildcardMaskToggleButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            WildcardMaskToggleButton.Location = new Point(39, 115);
+            WildcardMaskToggleButton.Name = "WildcardMaskToggleButton";
+            WildcardMaskToggleButton.Size = new Size(110, 98);
+            WildcardMaskToggleButton.TabIndex = 1;
+            WildcardMaskToggleButton.Text = "Wildcard-Maske:\r\nAus";
+            WildcardMaskToggleButton.UseVisualStyleBackColor = true;
+            WildcardMaskToggleButton.Click += WildcardMaskToggleButton_Click;
+            // 
+            // BitFormToggleButton
+            // 
+            BitFormToggleButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            BitFormToggleButton.Image = Properties.Resources.Binary_32xLG;
+            BitFormToggleButton.Location = new Point(39, 11);
+            BitFormToggleButton.Name = "BitFormToggleButton";
+            BitFormToggleButton.Size = new Size(110, 98);
+            BitFormToggleButton.TabIndex = 0;
+            BitFormToggleButton.Text = "Bitform:\r\nAus";
+            BitFormToggleButton.TextAlign = ContentAlignment.BottomCenter;
+            BitFormToggleButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            BitFormToggleButton.UseVisualStyleBackColor = true;
+            BitFormToggleButton.Click += BitFormToggleButton_Click;
             // 
             // AboutTabPage
             // 
@@ -347,6 +397,16 @@
             LogRichTextBox.TabIndex = 0;
             LogRichTextBox.Text = "";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Consolas", 18F, FontStyle.Bold);
+            label1.Location = new Point(280, 44);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 28);
+            label1.TabIndex = 0;
+            label1.Text = "BSN-Tools";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -356,16 +416,20 @@
             Controls.Add(BorderLabel);
             Controls.Add(HeaderPanel);
             DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "BSN Tools";
+            Text = "BSN-Tools";
             HeaderPanel.ResumeLayout(false);
             HeaderPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AppLogoPictureBox).EndInit();
             MainTabControl.ResumeLayout(false);
+            StartTabPage.ResumeLayout(false);
+            StartTabPage.PerformLayout();
             ConversionsAndCalculationsTabPage.ResumeLayout(false);
             IPv4NetworkTabPage.ResumeLayout(false);
             IPInputConfigGroupBox.ResumeLayout(false);
@@ -373,6 +437,7 @@
             IPMainInputsPanel.ResumeLayout(false);
             IPMainInputsPanel.PerformLayout();
             IPCalcActionsPanel.ResumeLayout(false);
+            IPCalculationToolsSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)IPCalculationToolsSplitContainer).EndInit();
             IPCalculationToolsSplitContainer.ResumeLayout(false);
             DebugTabPage.ResumeLayout(false);
@@ -406,5 +471,9 @@
         private Button IPCalculateButton;
         private Syncfusion.Windows.Forms.Tools.GroupView ConversionCalculationToolsMenu;
         private Panel ConversionCalculationToolContainerPanel;
+        private Button BitFormToggleButton;
+        private Button WildcardMaskToggleButton;
+        private Button AdvancedViewButton;
+        private Label label1;
     }
 }

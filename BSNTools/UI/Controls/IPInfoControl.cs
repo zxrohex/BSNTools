@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BSNTools.Common.Helpers.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,19 @@ namespace BSNTools.UI.Controls
         string sourceAddress;
 
         byte sourceCidr;
+
+        public IPNetwork2 MainIPNetwork => mainIPNetwork;
+
+        public IPNetworkCollection Subnets => subnets;
+
+        public string SourceAddress => sourceAddress;
+
+        public byte SourceCidr => sourceCidr;
+
+
+        public bool BitFormEnabled => bitFormEnabled;
+
+        public bool WildcardMaskEnabled => wildcardMaskEnabled;
 
         bool bitFormEnabled = false;
 
@@ -74,9 +88,8 @@ namespace BSNTools.UI.Controls
         {
             if (ipNetwork != null)
             {
-                IPAddressCIDRTextBoxExt.Text = ipNetwork.ToString();
-                IPNetmaskLabel.Text = "Netzmaske:";
-                IPNetmaskTextBoxExt.Text = ipNetwork.Netmask.ToString();
+                IPAddressCIDRTextBoxExt.Text = bitFormEnabled ? ipNetwork.ToBinaryString() : ipNetwork.ToString();
+                IPNetmaskTextBoxExt.Text = wildcardMaskEnabled ? (bitFormEnabled ? ipNetwork.WildcardMask.ToBinaryString() : ipNetwork.WildcardMask.ToString()) : (bitFormEnabled ? ipNetwork.Netmask.ToBinaryString() : ipNetwork.Netmask.ToString());
                 IPNetworkAddressTextBoxExt.Text = ipNetwork.Network.ToString();
                 IPBroadcastAddressTextBoxExt.Text = ipNetwork.Broadcast.ToString();
                 IPFirstUsableAddressTextBoxExt.Text = ipNetwork.FirstUsable.ToString();
@@ -91,7 +104,7 @@ namespace BSNTools.UI.Controls
             }
         }
 
-        private void ToggleWildcardMask()
+        public void ToggleWildcardMask()
         {
             if (IPSubnetsComboBox.SelectedIndex == 0)
             {
@@ -99,7 +112,7 @@ namespace BSNTools.UI.Controls
                 {
                     IPNetmaskLabel.Text = "Netzmaske:";
 
-                    IPNetmaskTextBoxExt.Text = mainIPNetwork.Netmask.ToString();
+                    IPNetmaskTextBoxExt.Text = bitFormEnabled ? mainIPNetwork.Netmask.ToBinaryString() : mainIPNetwork.Netmask.ToString();
 
                     wildcardMaskEnabled = false;
                 }
@@ -107,7 +120,7 @@ namespace BSNTools.UI.Controls
                 {
                     IPNetmaskLabel.Text = "Wildcard-Maske:";
 
-                    IPNetmaskTextBoxExt.Text = mainIPNetwork.WildcardMask.ToString();
+                    IPNetmaskTextBoxExt.Text = bitFormEnabled ? mainIPNetwork.WildcardMask.ToBinaryString() : mainIPNetwork.WildcardMask.ToString();
 
                     wildcardMaskEnabled = true;
                 }
@@ -120,7 +133,7 @@ namespace BSNTools.UI.Controls
                     {
                         IPNetmaskLabel.Text = "Netzmaske:";
 
-                        IPNetmaskTextBoxExt.Text = subnets[IPSubnetsComboBox.SelectedIndex - 1].Netmask.ToString();
+                        IPNetmaskTextBoxExt.Text = bitFormEnabled ? subnets[IPSubnetsComboBox.SelectedIndex - 1].Netmask.ToBinaryString() : subnets[IPSubnetsComboBox.SelectedIndex - 1].Netmask.ToString();
 
                         wildcardMaskEnabled = false;
                     }
@@ -128,7 +141,7 @@ namespace BSNTools.UI.Controls
                     {
                         IPNetmaskLabel.Text = "Wildcard-Maske:";
 
-                        IPNetmaskTextBoxExt.Text = subnets[IPSubnetsComboBox.SelectedIndex - 1].WildcardMask.ToString();
+                        IPNetmaskTextBoxExt.Text = bitFormEnabled ? subnets[IPSubnetsComboBox.SelectedIndex - 1].WildcardMask.ToBinaryString() : subnets[IPSubnetsComboBox.SelectedIndex - 1].WildcardMask.ToString();
 
                         wildcardMaskEnabled = true;
                     }
@@ -136,12 +149,14 @@ namespace BSNTools.UI.Controls
             }
         }
 
-        private void ToggleNetmaskBitforms()
+        public void ToggleNetmaskBitforms()
         {
             if (IPSubnetsComboBox.SelectedIndex == 0)
             {
                 if (bitFormEnabled)
                 {
+                    IPAddressCIDRTextBoxExt.Text = mainIPNetwork.ToString();
+
                     if (wildcardMaskEnabled)
                     {
                         IPNetmaskTextBoxExt.Text = mainIPNetwork.WildcardMask.ToString();
@@ -155,17 +170,20 @@ namespace BSNTools.UI.Controls
                 }
                 else
                 {
+                    IPAddressCIDRTextBoxExt.Text = string.Join(".", mainIPNetwork.ToStringWithoutCidr().Split(".").Select(i => Convert.ToString(byte.Parse(i), 2).PadLeft(8, '0')));
+
+
                     if (wildcardMaskEnabled)
                     {
-                        var bitsForm = mainIPNetwork.WildcardMask.ToString().Split(".").Select(i => Convert.ToString(byte.Parse(i), 2));
+                        var bitsForm = mainIPNetwork.WildcardMask.ToBinaryString();
 
-                        IPNetmaskTextBoxExt.Text = string.Join(".", bitsForm);
+                        IPNetmaskTextBoxExt.Text = bitsForm;
                     }
                     else
                     {
-                        var bitsForm = mainIPNetwork.Netmask.ToString().Split(".").Select(i => Convert.ToString(byte.Parse(i), 2));
+                        var bitsForm = mainIPNetwork.Netmask.ToBinaryString();
 
-                        IPNetmaskTextBoxExt.Text = string.Join(".", bitsForm);
+                        IPNetmaskTextBoxExt.Text = bitsForm;
                     }
 
                     bitFormEnabled = true;
@@ -177,6 +195,8 @@ namespace BSNTools.UI.Controls
                 {
                     if (bitFormEnabled)
                     {
+                        IPAddressCIDRTextBoxExt.Text = subnets[IPSubnetsComboBox.SelectedIndex - 1].ToString();
+
                         if (wildcardMaskEnabled)
                         {
                             IPNetmaskTextBoxExt.Text = subnets[IPSubnetsComboBox.SelectedIndex - 1].WildcardMask.ToString();
@@ -189,15 +209,18 @@ namespace BSNTools.UI.Controls
                     }
                     else
                     {
+                        IPAddressCIDRTextBoxExt.Text = string.Join(".", subnets[IPSubnetsComboBox.SelectedIndex - 1].ToStringWithoutCidr().Split(".").Select(i => Convert.ToString(byte.Parse(i), 2).PadLeft(8, '0')));
+
+
                         if (wildcardMaskEnabled)
                         {
-                            var bitsForm = subnets[IPSubnetsComboBox.SelectedIndex - 1].WildcardMask.ToString().Split(".").Select(i => Convert.ToString(byte.Parse(i), 2));
-                            IPNetmaskTextBoxExt.Text = string.Join(".", bitsForm);
+                            var bitsForm = subnets[IPSubnetsComboBox.SelectedIndex - 1].WildcardMask.ToBinaryString();
+                            IPNetmaskTextBoxExt.Text = bitsForm;
                         }
                         else
                         {
-                            var bitsForm = subnets[IPSubnetsComboBox.SelectedIndex - 1].Netmask.ToString().Split(".").Select(i => Convert.ToString(byte.Parse(i), 2));
-                            IPNetmaskTextBoxExt.Text = string.Join(".", bitsForm);
+                            var bitsForm = subnets[IPSubnetsComboBox.SelectedIndex - 1].Netmask.ToBinaryString();
+                            IPNetmaskTextBoxExt.Text = bitsForm;
                         }
 
                         bitFormEnabled = true;
@@ -225,17 +248,7 @@ namespace BSNTools.UI.Controls
         {
             InitializeUI();
 
-            this.ParentForm.KeyDown += (sender, e) =>
-            {
-                if (e.KeyCode == Keys.F8)
-                {
-                    ToggleWildcardMask();
-                }
-                else if (e.KeyCode == Keys.F4)
-                {
-                    ToggleNetmaskBitforms();
-                }
-            };
+            
         }
     }
 }

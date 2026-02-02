@@ -20,7 +20,7 @@ namespace BSNTools
 
         UnitConversionControl unitConversionControl;
 
-
+        AboutControl aboutControl;
 
 
         Version version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -28,6 +28,18 @@ namespace BSNTools
         public MainForm()
         {
             InitializeComponent();
+
+            this.KeyDown += (sender, e) =>
+            {
+                if (e.KeyCode == Keys.F8)
+                {
+                    ToggleIPInfoControlDisplay(1);
+                }
+                else if (e.KeyCode == Keys.F4)
+                {
+                    ToggleIPInfoControlDisplay(0);
+                }
+            };
 
             numericSystemsConversionControl = new NumericSystemsConversionControl()
             {
@@ -38,6 +50,15 @@ namespace BSNTools
             {
                 Dock = DockStyle.Fill
             };
+
+            aboutControl = new AboutControl()
+            {
+                Dock = DockStyle.Fill
+            };
+
+            AboutTabPage.Controls.Add(aboutControl);
+
+            VersionLabel.Text = $"Version {version.Major}.{version.Minor}.{version.Build}-prealpha Build {version.Revision}";
 
             SetUnitAndConversionsTool(0);
         }
@@ -70,6 +91,8 @@ namespace BSNTools
                 ipInfoControl.Dispose();
 
                 ipInfoControl = null;
+
+                IPCalculationToolsSplitContainer.Panel2.Enabled = false;
             }
 
             if (!string.IsNullOrEmpty(IPAddressInputTextBox.Text))
@@ -91,6 +114,8 @@ namespace BSNTools
                 }
 
                 IPCalculationToolsSplitContainer.Panel1.Controls.Add(ipInfoControl);
+
+                IPCalculationToolsSplitContainer.Panel2.Enabled = true;
             }
 
 
@@ -140,6 +165,68 @@ namespace BSNTools
         private void ConversionCalculationToolsMenu_GroupViewItemSelected(object sender, EventArgs e)
         {
             SetUnitAndConversionsTool(ConversionCalculationToolsMenu.SelectedItem);
+        }
+
+        private void ToggleIPInfoControlDisplay(int viewType)
+        {
+            if (ipInfoControl != null)
+            {
+                switch (viewType)
+                {
+                    case 0:
+                        if (ipInfoControl.BitFormEnabled)
+                        {
+                            BitFormToggleButton.Text = "Bitform:\nAus";
+
+                        }
+                        else
+                        {
+                            BitFormToggleButton.Text = "Bitform:\nAn";
+                        }
+
+                        ipInfoControl.ToggleNetmaskBitforms();
+                        break;
+
+                    case 1:
+                        if (ipInfoControl.WildcardMaskEnabled)
+                        {
+                            WildcardMaskToggleButton.Text = "Wildcard-Maske:\nAus";
+                        }
+                        else
+                        {
+                            WildcardMaskToggleButton.Text = "Wildcard-Maske:\nAn";
+                        }
+                        ipInfoControl?.ToggleWildcardMask();
+                        break;
+                }
+            }
+        }
+
+
+        private void BitFormToggleButton_Click(object sender, EventArgs e)
+        {
+            ToggleIPInfoControlDisplay(0);
+        }
+
+        private void WildcardMaskToggleButton_Click(object sender, EventArgs e)
+        {
+            ToggleIPInfoControlDisplay(1);
+
+
+
+        }
+
+        private void AdvancedViewButton_Click(object sender, EventArgs e)
+        {
+            if (ipInfoControl != null)
+            {
+
+                using (AdvancedIPToolsForm advancedIPToolsForm = new AdvancedIPToolsForm(ipInfoControl))
+                {
+                    advancedIPToolsForm.ShowDialog();
+                }
+
+            }
         }
     }
 }
